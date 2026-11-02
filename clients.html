@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Clients | RS Systems &amp; Solutions LLP</title>
+    <meta name="description" content="Banks, defence services, universities, pharma companies and industries that trust RS Systems &amp; Solutions LLP for UPS, inverters, stabilizers and solar power backup.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        /* ===== BRAND SETTINGS: RS Systems & Solutions branding ===== */
+        const BRAND = {
+            primary:      '#0056b3',  /* corporate blue accent: buttons, highlights, icons */
+            primaryHover: '#004085',  /* button hover */
+            dark:         '#0f172a',  /* dark sections, header text, footer */
+            darkCard:     '#1e293b'   /* top bar, cards on dark */
+        };
+        const hexToRgb = h => { h = h.replace('#',''); return [0,2,4].map(i => parseInt(h.substr(i,2),16)).join(','); };
+        const rs = document.documentElement.style;
+        rs.setProperty('--brand-primary', BRAND.primary);
+        rs.setProperty('--brand-primary-rgb', hexToRgb(BRAND.primary));
+        rs.setProperty('--brand-dark', BRAND.dark);
+        rs.setProperty('--brand-dark-rgb', hexToRgb(BRAND.dark));
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        greenaro: {
+                            lime: BRAND.primary,
+                            limeHover: BRAND.primaryHover,
+                            dark: BRAND.dark,
+                            darker: BRAND.dark,
+                            cardDark: BRAND.darkCard,
+                            cardLight: '#f8fafc',
+                            grayText: '#718096',
+                            amber: '#f59e0b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+        body { font-family: 'Open Sans', sans-serif; color: #2d3748; background: #fff; overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+        @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .animate-spin-slow { animation: spinSlow 15s linear infinite; }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(10px); transition: all .25s ease; }
+        .marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* Scroll reveal */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+        .reveal.zoom { transform: scale(.92); }
+        .reveal.in { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .hero-bg, .marquee-track, .animate-spin-slow { animation: none; } }
+
+        /* Why-cards hover fill (reused from template) */
+        .svc { position: relative; overflow: hidden; isolation: isolate; }
+        .svc::before { content: ""; position: absolute; inset: 0; background: var(--brand-dark); transform: translateY(101%); transition: transform .55s cubic-bezier(.7,0,.2,1); z-index: -1; }
+        .svc:hover::before { transform: translateY(0); }
+        .svc h3, .svc p, .svc .svc-icon, .svc .svc-num { transition: color .4s ease, background .4s ease, transform .5s ease; }
+        .svc:hover h3 { color: #fff; }
+        .svc:hover p { color: #cbd5e1; }
+        .svc .svc-icon { background: rgba(var(--brand-primary-rgb), .12); color: var(--brand-primary); }
+        .svc:hover .svc-icon { background: var(--brand-primary); color: #fff; transform: rotateY(360deg); }
+        .svc .svc-num { color: rgba(var(--brand-dark-rgb), .06); }
+        .svc:hover .svc-num { color: rgba(var(--brand-primary-rgb), .3); transform: translateY(-6px); }
+
+        /* Hero */
+        @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+        .hero-bg { animation: heroZoom 18s ease-in-out infinite alternate; }
+
+        /* Product cards */
+        .pcard { transition: transform .35s ease, box-shadow .35s ease; }
+        .pcard:hover { transform: translateY(-6px); box-shadow: 0 25px 50px -12px rgba(15,23,42,.25); }
+        .pcard img { transition: transform .5s ease; mix-blend-mode: multiply; }
+        .pcard:hover img { transform: scale(1.06); }
+        .pfilter.active { background: var(--brand-primary); color: #fff; border-color: var(--brand-primary); }
+        .pcard.hide { display: none; }
+        .circuit { background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 22px 22px; }
+    </style>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/rslogo.jpeg">
+    <link rel="stylesheet" href="assets/rs-enhance.css">
+</head>
+<body class="bg-white text-gray-800 antialiased" data-rs-page="site">
+
+    <!-- TOP BAR -->
+    <div class="bg-[#1e293b] text-gray-300 text-xs sm:text-sm py-2.5 px-4 sm:px-8 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1">
+                <a href="mailto:sales@rssystems.in" class="flex items-center gap-2 hover:text-white transition"><i class="fa-regular fa-envelope text-sky-400"></i> sales@rssystems.in</a>
+                <a href="tel:+919004657056" class="flex items-center gap-2 hover:text-white transition"><i class="fa-solid fa-phone text-sky-400"></i> 9004 657 056 / 9004 657 036</a>
+            </div>
+            <div class="flex items-center gap-2 text-center"><i class="fa-solid fa-award text-sky-400"></i> CE &amp; ISO 9001:2015 &amp; NABL Certified Indian Company</div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="rs-brand" aria-label="RS Systems &amp; Solutions home"><img src="assets/rslogo.jpeg" alt="RS Systems logo" width="48" height="48"><span class="rs-brand-text"><b>RS Systems</b><small>Real &amp; Sure</small></span></a>
+
+            <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-gray-700">
+                <a href="index.html" class="hover:text-greenaro-lime transition">Home</a>
+                <a href="about.html" class="hover:text-greenaro-lime transition">About</a>
+                <div class="dropdown relative py-6">
+                    <a href="index.html#products" class="hover:text-greenaro-lime transition flex items-center gap-1">Products <i class="fa-solid fa-chevron-down text-[10px]"></i></a>
+                    <div class="dropdown-menu absolute top-full left-0 w-56 bg-white shadow-xl rounded-xl border border-gray-100 py-2">
+                        <a href="ups.html" data-jump="ups" class="block px-5 py-2.5 hover:bg-gray-50">UPS Systems</a>
+                        <a href="inverters.html" data-jump="inverter" class="block px-5 py-2.5 hover:bg-gray-50">Inverters</a>
+                        <a href="solar.html" data-jump="solar" class="block px-5 py-2.5 hover:bg-gray-50">Solar Systems</a>
+                        <a href="stabilizers.html" data-jump="stabilizer" class="block px-5 py-2.5 hover:bg-gray-50">Stabilizers</a>
+                        <a href="lithium.html" class="block px-5 py-2.5 hover:bg-gray-50">Lithium Range</a>
+                    </div>
+                </div>
+                <a href="industries.html" class="hover:text-greenaro-lime transition">Industries</a>
+                <a href="projects.html" class="hover:text-greenaro-lime transition">Projects</a>
+                <a href="clients.html" class="text-greenaro-dark font-semibold hover:text-greenaro-lime transition">Clients</a>
+                <a href="contact.html" class="hover:text-greenaro-lime transition">Contact</a>
+            </nav>
+
+            <div class="hidden sm:flex items-center">
+                <a href="contact.html" class="bg-greenaro-lime hover:bg-greenaro-limeHover text-white font-heading font-semibold text-sm px-6 py-3 rounded-full flex items-center gap-2 shadow-sm transition transform hover:-translate-y-0.5">
+                    Get a Quote <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" aria-label="Menu" class="lg:hidden text-2xl text-gray-800 focus:outline-none"><i class="fa-solid fa-bars"></i></button>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-1 shadow-lg">
+            <a href="index.html" class="block text-gray-700 py-2">Home</a>
+            <a href="about.html" class="block text-gray-700 py-2">About</a>
+            <a href="index.html#products" class="block text-gray-700 py-2">Products</a>
+            <a href="lithium.html" class="block text-gray-700 py-2">Lithium Range</a>
+            <a href="industries.html" class="block text-gray-700 py-2">Industries</a>
+            <a href="projects.html" class="block text-gray-700 py-2">Projects</a>
+            <a href="clients.html" class="block text-greenaro-dark font-semibold py-2">Clients</a>
+            <a href="contact.html" class="block text-gray-700 py-2">Contact</a>
+            <div class="pt-3">
+                <a href="contact.html" class="w-full bg-greenaro-lime text-white font-semibold py-3 rounded-full flex items-center justify-center gap-2">Get a Quote <i class="fa-solid fa-arrow-right text-xs"></i></a>
+            </div>
+        </div>
+    </header>
+
+    
+
+
+<!-- PAGE HEADER -->
+    <section class="rs-hero relative bg-greenaro-dark text-white overflow-hidden" data-rs-hero>
+        <div class="rs-hero-bg"><img class="rs-watermark" src="assets/rslogo-mark.png" alt="" aria-hidden="true"></div>
+        <div class="rs-hero-carousel"><div class="hs" data-name="Online UPS" data-cat="UPS" data-tagline="5 to 200 KVA clean, continuous power" data-enq="Online UPS"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/ups-online.jpg')" role="img" aria-label="Online UPS"></div></div></div><div class="hs" data-name="Servo Voltage Stabilizer" data-cat="Stabilizer" data-tagline="Stable voltage for critical equipment" data-enq="Servo Voltage Stabilizer"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/stabilizer.jpg')" role="img" aria-label="Servo Voltage Stabilizer"></div></div></div><div class="hs" data-name="Solar On-Grid Inverter" data-cat="Solar" data-tagline="Cut electricity bills with grid-tied solar" data-enq="Solar On-Grid Inverter"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/solar-ongrid.jpg')" role="img" aria-label="Solar On-Grid Inverter"></div></div></div><div class="hs" data-name="Domestic Inverter" data-cat="Inverter" data-tagline="Keeps homes and shops running through cuts" data-enq="Domestic Inverter"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/inverter-domestic.jpg')" role="img" aria-label="Domestic Inverter"></div></div></div><div class="hs" data-name="Lithium UPS" data-cat="Lithium · New" data-tagline="Maintenance-free Lithium Ferro Phosphate" data-enq="Lithium UPS"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/lithium-ups.jpg')" role="img" aria-label="Lithium UPS"></div></div></div><span class="rs-hero-tag" data-rs-tag><i class="fa-solid fa-box-open"></i>Product</span><button type="button" class="rs-hero-arrow prev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button><button type="button" class="rs-hero-arrow next" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button><div class="rs-hero-dots"><button type="button" aria-label="Show slide 1"></button><button type="button" aria-label="Show slide 2"></button><button type="button" aria-label="Show slide 3"></button><button type="button" aria-label="Show slide 4"></button><button type="button" aria-label="Show slide 5"></button></div><div class="rs-hero-progress"><i></i></div></div>
+        <div class="rs-hero-inner relative max-w-7xl mx-auto px-4 sm:px-8 w-full">
+            <div class="rs-hero-copy">
+            <nav aria-label="Breadcrumb" class="text-sm text-gray-300 mb-6"><a href="index.html" class="hover:text-white">Home</a> <span class="mx-2">/</span> <span class="text-white">Clients</span></nav>
+            <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight max-w-3xl">Trusted by esteemed organizations</h1>
+            <p class="mt-5 text-lg sm:text-xl text-gray-200 max-w-2xl">From national banks and defence services to universities and pharma companies, these are the organizations that rely on RS power quality solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div><div class="font-heading font-extrabold text-4xl text-greenaro-lime"><span class="counter" data-target="20">0</span>+</div><p class="text-sm text-gray-500 mt-1">Esteemed clients</p></div>
+            <div><div class="font-heading font-extrabold text-4xl text-greenaro-lime"><span class="counter" data-target="5">0</span></div><p class="text-sm text-gray-500 mt-1">Sector groups</p></div>
+            <div><div class="font-heading font-extrabold text-4xl text-greenaro-lime"><span class="counter" data-target="3">0</span></div><p class="text-sm text-gray-500 mt-1">Countries exported to</p></div>
+            <div><div class="font-heading font-extrabold text-4xl text-greenaro-lime"><span class="counter" data-target="32">0</span>+</div><p class="text-sm text-gray-500 mt-1">Years of experience</p></div>
+        </div>
+    </section>
+
+    <!-- CLIENTS -->
+    <section class="py-20 lg:py-28 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="reveal flex flex-wrap gap-3 mb-12" role="group" aria-label="Filter clients"><button type="button" data-f="all" class="cf border border-gray-300 rounded-full px-5 py-2 text-sm font-semibold text-gray-700 hover:border-greenaro-lime transition active">All clients</button><button type="button" data-f="bank" class="cf border border-gray-300 rounded-full px-5 py-2 text-sm font-semibold text-gray-700 hover:border-greenaro-lime transition">Banking</button><button type="button" data-f="gov" class="cf border border-gray-300 rounded-full px-5 py-2 text-sm font-semibold text-gray-700 hover:border-greenaro-lime transition">Defence &amp; government</button><button type="button" data-f="edu" class="cf border border-gray-300 rounded-full px-5 py-2 text-sm font-semibold text-gray-700 hover:border-greenaro-lime transition">Education</button><button type="button" data-f="pharma" class="cf border border-gray-300 rounded-full px-5 py-2 text-sm font-semibold text-gray-700 hover:border-greenaro-lime transition">Pharma &amp; healthcare</button><button type="button" data-f="ind" class="cf border border-gray-300 rounded-full px-5 py-2 text-sm font-semibold text-gray-700 hover:border-greenaro-lime transition">Industry, media &amp; hospitality</button></div>
+            <div class="space-y-14">
+<div class="cgrp reveal" data-g="bank"><h3 class="font-heading font-bold text-xl text-gray-900 flex items-center gap-3 mb-5"><span class="w-10 h-10 rounded-xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center"><i class="fa-solid fa-building-columns"></i></span>Banking</h3><div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">BI</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Bank of India</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">SB</div><div><p class="font-heading font-bold text-gray-900 leading-snug">State Bank of India</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">IB</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Indian Bank</p></div></div></div></div>
+<div class="cgrp reveal" data-g="gov"><h3 class="font-heading font-bold text-xl text-gray-900 flex items-center gap-3 mb-5"><span class="w-10 h-10 rounded-xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center"><i class="fa-solid fa-landmark"></i></span>Defence &amp; government</h3><div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">IA</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Indian Army</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">IN</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Indian Navy</p><p class="text-xs text-gray-500 mt-1">5 KVA Online UPS, Pune</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">SP</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Security Printing &amp; Minting Corp. of India</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">MP</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Mormugao Port Authority</p></div></div></div></div>
+<div class="cgrp reveal" data-g="edu"><h3 class="font-heading font-bold text-xl text-gray-900 flex items-center gap-3 mb-5"><span class="w-10 h-10 rounded-xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center"><i class="fa-solid fa-graduation-cap"></i></span>Education</h3><div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">NM</div><div><p class="font-heading font-bold text-gray-900 leading-snug">North Maharashtra University</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">BA</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Dr. Babasaheb Ambedkar Technological University</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">WE</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Warana Engineering College</p></div></div></div></div>
+<div class="cgrp reveal" data-g="pharma"><h3 class="font-heading font-bold text-xl text-gray-900 flex items-center gap-3 mb-5"><span class="w-10 h-10 rounded-xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center"><i class="fa-solid fa-flask-vial"></i></span>Pharma &amp; healthcare</h3><div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">IR</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Indoco Remedies</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">GP</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Galentic Pharma</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">WP</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Wallace Pharmaceuticals</p><p class="text-xs text-gray-500 mt-1">2 &times; 200 KVA Online UPS</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">SP</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Suntech Pharma</p><p class="text-xs text-gray-500 mt-1">2 &times; 100 + 2 &times; 80 KVA Online UPS</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">CI</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Clinisupplies India Pvt. Ltd.</p><p class="text-xs text-gray-500 mt-1">1000 KVA Stabilizer + UPS systems</p></div></div></div></div>
+<div class="cgrp reveal" data-g="ind"><h3 class="font-heading font-bold text-xl text-gray-900 flex items-center gap-3 mb-5"><span class="w-10 h-10 rounded-xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center"><i class="fa-solid fa-industry"></i></span>Industry, media &amp; hospitality</h3><div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">GD</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Gokul Dudh</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">SS</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Simbhaoli Sugars</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">UT</div><div><p class="font-heading font-bold text-gray-900 leading-snug">United Telecom</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">PP</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Pudhari Publication</p></div></div><div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-greenaro-dark text-white font-heading font-bold flex items-center justify-center shrink-0">PR</div><div><p class="font-heading font-bold text-gray-900 leading-snug">Pawankhind Resort</p></div></div></div></div>
+            </div>
+            <p class="reveal mt-14 text-gray-600 max-w-3xl leading-relaxed">We have also installed systems at KEM Hospital, Pune and Mercedes-Benz, Cochin, and exported solar inverters and batteries to Zambia, Kenya and Uganda. <a href="projects.html" class="text-greenaro-lime font-semibold hover:underline">See our projects</a>.</p>
+        </div>
+    </section>
+
+    <!-- PRODUCT RANGE STRIP -->
+    <section class="py-16 bg-white"><div class="max-w-7xl mx-auto px-4 sm:px-8"><div class="reveal flex flex-wrap items-end justify-between gap-4 mb-6"><h2 class="font-heading font-extrabold text-3xl text-gray-900 tracking-tight">The equipment they rely on</h2><a href="index.html#products" class="text-greenaro-lime font-semibold hover:underline">All products <i class="fa-solid fa-arrow-right text-xs"></i></a></div><div class="reveal rs-strip"><a href="ups.html#ups-online"><img src="assets/ups-online.jpg" alt="Online UPS" loading="lazy"><span>Online UPS</span></a><a href="ups.html#ups-line"><img src="assets/ups-line-interactive.jpg" alt="Line Interactive UPS" loading="lazy"><span>Line Interactive UPS</span></a><a href="ups.html#ups-smart"><img src="assets/ups-smart.jpg" alt="Smart UPS" loading="lazy"><span>Smart UPS</span></a><a href="inverters.html#inv-domestic"><img src="assets/inverter-domestic.jpg" alt="Domestic Inverter" loading="lazy"><span>Domestic Inverter</span></a><a href="inverters.html#inv-lift"><img src="assets/inverter-lift.jpg" alt="Lift Inverter" loading="lazy"><span>Lift Inverter</span></a><a href="solar.html#solar-on"><img src="assets/solar-ongrid.jpg" alt="Solar On-Grid" loading="lazy"><span>Solar On-Grid</span></a><a href="solar.html#solar-off"><img src="assets/solar-offgrid.jpg" alt="Solar Off-Grid" loading="lazy"><span>Solar Off-Grid</span></a><a href="stabilizers.html#product"><img src="assets/stabilizer.jpg" alt="Servo Stabilizer" loading="lazy"><span>Servo Stabilizer</span></a><a href="lithium.html#lith-ups"><img src="assets/lithium-ups.jpg" alt="Lithium UPS" loading="lazy"><span>Lithium UPS</span></a><a href="lithium.html#lith-mppt"><img src="assets/lithium-mppt.jpg" alt="Lithium MPPT 1 KVA" loading="lazy"><span>Lithium MPPT 1 KVA</span></a></div></div></section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-greenaro-lime text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <h2 class="font-heading font-extrabold text-2xl sm:text-3xl max-w-2xl">Join the organizations that trust RS Systems for reliable power.</h2>
+            <a href="contact.html" class="bg-white text-greenaro-lime font-heading font-bold px-8 py-4 rounded-full inline-flex items-center gap-3 shadow-md hover:-translate-y-0.5 transition">Get a quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+        </div>
+    </section>
+
+    <style>.cf.active{background:var(--brand-primary);color:#fff;border-color:var(--brand-primary)}.cgrp.hide{display:none}</style>
+    <script>
+        document.querySelectorAll('.cf').forEach(b=>b.addEventListener('click',()=>{
+            const f=b.dataset.f;
+            document.querySelectorAll('.cf').forEach(x=>x.classList.toggle('active',x===b));
+            document.querySelectorAll('.cgrp').forEach(g=>g.classList.toggle('hide',f!=='all'&&g.dataset.g!==f));
+        }));
+    </script>
+
+
+<footer id="contact" class="bg-greenaro-dark text-white pt-20 pb-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20">
+                <div class="reveal lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-300 bg-white/10 px-4 py-1.5 rounded-full inline-block">Contact us</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Tell us your power problem. We'll size the solution.</h2>
+                    <p class="text-gray-300 leading-relaxed">Contact us today to discuss your specific requirements, receive expert guidance and find the perfect power quality solution for your business.</p>
+                    <ul class="space-y-5 text-sm">
+                        <li class="flex gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0"><i class="fa-solid fa-phone text-sky-300"></i></span><span><span class="block text-gray-400 text-xs uppercase tracking-wider">Call us</span><a href="tel:+919004657056" class="hover:text-sky-300">9004 657 056</a> / <a href="tel:+919004657036" class="hover:text-sky-300">9004 657 036</a></span></li>
+                        <li class="flex gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0"><i class="fa-regular fa-envelope text-sky-300"></i></span><span><span class="block text-gray-400 text-xs uppercase tracking-wider">Email</span><a href="mailto:sales@rssystems.in" class="hover:text-sky-300">sales@rssystems.in</a> / <a href="mailto:info@rssystems.in" class="hover:text-sky-300">info@rssystems.in</a></span></li>
+                        <li class="flex gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0"><i class="fa-solid fa-building text-sky-300"></i></span><span><span class="block text-gray-400 text-xs uppercase tracking-wider">Registered office</span>B-206, Walchand Plaza, Geeta Nagar, opp. Kapolwadi, Bhayander (West), Thane</span></li>
+                        <li class="flex gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0"><i class="fa-solid fa-location-dot text-sky-300"></i></span><span><span class="block text-gray-400 text-xs uppercase tracking-wider">Branch office</span>C-302, Blue Bell, Karande Mala, Tarabai Park, Kolhapur</span></li>
+                    </ul>
+                </div>
+
+                <form id="enquiry-form" class="reveal zoom lg:col-span-7 bg-greenaro-cardDark border border-white/10 rounded-3xl p-8 sm:p-10 shadow-2xl space-y-5">
+                    <h3 class="font-heading font-bold text-xl">Request a quote</h3>
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <label class="block text-sm"><span class="text-gray-300">Name</span>
+                            <input required name="name" type="text" class="mt-1.5 w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-sky-400" placeholder="Your name"></label>
+                        <label class="block text-sm"><span class="text-gray-300">Phone</span>
+                            <input required name="phone" type="tel" class="mt-1.5 w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-sky-400" placeholder="Mobile number"></label>
+                    </div>
+                    <label class="block text-sm"><span class="text-gray-300">Product</span>
+                        <select name="product" id="enquiry-product" class="mt-1.5 w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white focus:outline-none focus:border-sky-400">
+                            <option class="text-gray-900">Online UPS</option>
+                            <option class="text-gray-900">Line Interactive UPS</option>
+                            <option class="text-gray-900">Smart UPS</option>
+                            <option class="text-gray-900">Domestic Inverter</option>
+                            <option class="text-gray-900">Lift Inverter</option>
+                            <option class="text-gray-900">Solar On-Grid Inverter</option>
+                            <option class="text-gray-900">Solar Off-Grid Inverter</option>
+                            <option class="text-gray-900">Servo Voltage Stabilizer</option>
+                            <option class="text-gray-900">Lithium UPS</option>
+                            <option class="text-gray-900">Lithium MPPT Inverter</option>
+                            <option class="text-gray-900">Lithium range</option>
+                            <option class="text-gray-900">AMC / Service</option>
+                            <option class="text-gray-900">Other</option>
+                        </select></label>
+                    <label class="block text-sm"><span class="text-gray-300">Your requirement</span>
+                        <textarea name="msg" rows="4" class="mt-1.5 w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-sky-400" placeholder="Load, capacity (KVA), location, backup time..."></textarea></label>
+                    <button type="submit" class="bg-greenaro-lime hover:bg-greenaro-limeHover text-white font-heading font-bold text-base px-8 py-4 rounded-full inline-flex items-center gap-3 shadow-lg transition transform hover:-translate-y-0.5">
+                        Send enquiry <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                    <p class="text-xs text-gray-400">Opens your email app with the details addressed to sales@rssystems.in.</p>
+                </form>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-14 border-b border-white/10">
+                <div class="lg:col-span-2 space-y-5">
+                    <a href="index.html" class="rs-brand rs-brand--footer inline-flex bg-white rounded-xl px-4 py-2" aria-label="RS Systems &amp; Solutions home"><img src="assets/rslogo.jpeg" alt="RS Systems logo" width="42" height="42"><span class="rs-brand-text"><b>RS Systems</b><small>&amp; Solutions LLP</small></span></a>
+                    <p class="text-gray-400 text-sm max-w-sm leading-relaxed">RS Systems &amp; Solutions LLP &mdash; generic power equipment with branded quality. CE, ISO 9001:2015 &amp; NABL certified Indian company.</p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-heading font-bold text-base">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="about.html" class="hover:text-sky-300 transition">About Us</a></li>
+                        <li><a href="index.html#products" class="hover:text-sky-300 transition">Products</a></li>
+                        <li><a href="industries.html" class="hover:text-sky-300 transition">Industries</a></li>
+                        <li><a href="clients.html" class="hover:text-sky-300 transition">Clients</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-heading font-bold text-base">Certifications</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li>ISO 9001 &middot; ISO 14001</li>
+                        <li>CE &middot; RoHS</li>
+                        <li>NABL</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+                <div>&copy; 2026 RS Systems &amp; Solutions LLP. All rights reserved.</div>
+                <div>Real &amp; Sure</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/919004657056" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center text-3xl shadow-xl hover:scale-110 transition"><i class="fa-brands fa-whatsapp"></i></a>
+
+    <script>
+        // Mobile menu
+        const mm = document.getElementById('mobile-menu');
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => mm.classList.toggle('hidden'));
+        mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.add('hidden')));
+
+        // Product filters
+        const filters = document.querySelectorAll('.pfilter');
+        const cards = document.querySelectorAll('#product-grid .pcard');
+        function applyFilter(f) {
+            filters.forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+            cards.forEach(c => c.classList.toggle('hide', f !== 'all' && c.dataset.cat !== f));
+        }
+        filters.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
+        document.querySelectorAll('[data-jump]').forEach(a => a.addEventListener('click', () => applyFilter(a.dataset.jump)));
+
+        // Pre-select product in enquiry form
+        const sel = document.getElementById('enquiry-product');
+        document.querySelectorAll('[data-enquire]').forEach(a => a.addEventListener('click', () => {
+            const v = a.dataset.enquire;
+            for (const o of sel.options) if (o.text === v) sel.value = v;
+        }));
+
+        // Enquiry -> mailto
+        document.getElementById('enquiry-form').addEventListener('submit', e => {
+            e.preventDefault();
+            const f = e.target;
+            const body = `Name: ${f.name.value}\nPhone: ${f.phone.value}\nProduct: ${f.product.value}\n\nRequirement:\n${f.msg.value}`;
+            window.location.href = 'mailto:sales@rssystems.in?subject=' + encodeURIComponent('Enquiry: ' + f.product.value) + '&body=' + encodeURIComponent(body);
+        });
+
+        // Counters
+        const counters = document.querySelectorAll('.counter');
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target, target = +el.dataset.target, step = Math.max(1, Math.ceil(target / 60));
+                let n = 0;
+                const t = setInterval(() => {
+                    n = Math.min(n + step, target);
+                    el.textContent = n;
+                    if (n >= target) clearInterval(t);
+                }, 25);
+                io.unobserve(el);
+            });
+        }, { threshold: 0.4 });
+        counters.forEach(c => io.observe(c));
+
+        // Scroll reveal
+        const rio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } }), { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => rio.observe(el));
+    </script>
+    <script src="assets/rs-enhance.js" defer></script>
+</body>
+</html>

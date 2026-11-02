@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS Systems &amp; Solutions LLP - Power Quality Solutions</title>
+    <meta name="description" content="RS Systems & Solutions LLP - CE, ISO 9001 and NABL certified Indian manufacturer of UPS, inverters, servo stabilizers, solar systems and lithium power backup. Real & Sure.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        /* ===== BRAND SETTINGS: RS Systems & Solutions branding ===== */
+        const BRAND = {
+            primary:      '#0056b3',  /* corporate blue accent: buttons, highlights, icons */
+            primaryHover: '#004085',  /* button hover */
+            dark:         '#0f172a',  /* dark sections, header text, footer */
+            darkCard:     '#1e293b'   /* top bar, cards on dark */
+        };
+        const hexToRgb = h => { h = h.replace('#',''); return [0,2,4].map(i => parseInt(h.substr(i,2),16)).join(','); };
+        const rs = document.documentElement.style;
+        rs.setProperty('--brand-primary', BRAND.primary);
+        rs.setProperty('--brand-primary-rgb', hexToRgb(BRAND.primary));
+        rs.setProperty('--brand-dark', BRAND.dark);
+        rs.setProperty('--brand-dark-rgb', hexToRgb(BRAND.dark));
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        greenaro: {
+                            lime: BRAND.primary,
+                            limeHover: BRAND.primaryHover,
+                            dark: BRAND.dark,
+                            darker: BRAND.dark,
+                            cardDark: BRAND.darkCard,
+                            cardLight: '#f8fafc',
+                            grayText: '#718096',
+                            amber: '#f59e0b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+        body { font-family: 'Open Sans', sans-serif; color: #2d3748; background: #fff; overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+        @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .animate-spin-slow { animation: spinSlow 15s linear infinite; }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(10px); transition: all .25s ease; }
+        .marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* Scroll reveal */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+        .reveal.zoom { transform: scale(.92); }
+        .reveal.in { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .hero-bg, .marquee-track, .animate-spin-slow { animation: none; } }
+
+        /* Why-cards hover fill (reused from template) */
+        .svc { position: relative; overflow: hidden; isolation: isolate; }
+        .svc::before { content: ""; position: absolute; inset: 0; background: var(--brand-dark); transform: translateY(101%); transition: transform .55s cubic-bezier(.7,0,.2,1); z-index: -1; }
+        .svc:hover::before { transform: translateY(0); }
+        .svc h3, .svc p, .svc .svc-icon, .svc .svc-num { transition: color .4s ease, background .4s ease, transform .5s ease; }
+        .svc:hover h3 { color: #fff; }
+        .svc:hover p { color: #cbd5e1; }
+        .svc .svc-icon { background: rgba(var(--brand-primary-rgb), .12); color: var(--brand-primary); }
+        .svc:hover .svc-icon { background: var(--brand-primary); color: #fff; transform: rotateY(360deg); }
+        .svc .svc-num { color: rgba(var(--brand-dark-rgb), .06); }
+        .svc:hover .svc-num { color: rgba(var(--brand-primary-rgb), .3); transform: translateY(-6px); }
+
+        /* Hero */
+        @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+        .hero-bg { animation: heroZoom 18s ease-in-out infinite alternate; }
+
+        /* Product cards */
+        .pcard { transition: transform .35s ease, box-shadow .35s ease; }
+        .pcard:hover { transform: translateY(-6px); box-shadow: 0 25px 50px -12px rgba(15,23,42,.25); }
+        .pcard img { transition: transform .5s ease; mix-blend-mode: multiply; }
+        .pcard:hover img { transform: scale(1.06); }
+        .pfilter.active { background: var(--brand-primary); color: #fff; border-color: var(--brand-primary); }
+        .pcard.hide { display: none; }
+        .circuit { background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 22px 22px; }
+    </style>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/rslogo.jpeg">
+    <link rel="stylesheet" href="assets/rs-enhance.css">
+</head>
+<body class="bg-white text-gray-800 antialiased" data-rs-page="site">
+
+    <!-- TOP BAR -->
+    <div class="bg-[#1e293b] text-gray-300 text-xs sm:text-sm py-2.5 px-4 sm:px-8 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1">
+                <a href="mailto:sales@rssystems.in" class="flex items-center gap-2 hover:text-white transition"><i class="fa-regular fa-envelope text-sky-400"></i> sales@rssystems.in</a>
+                <a href="tel:+919004657056" class="flex items-center gap-2 hover:text-white transition"><i class="fa-solid fa-phone text-sky-400"></i> 9004 657 056 / 9004 657 036</a>
+            </div>
+            <div class="flex items-center gap-2 text-center"><i class="fa-solid fa-award text-sky-400"></i> CE &amp; ISO 9001:2015 &amp; NABL Certified Indian Company</div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="rs-brand" aria-label="RS Systems &amp; Solutions home"><img src="assets/rslogo.jpeg" alt="RS Systems logo" width="48" height="48"><span class="rs-brand-text"><b>RS Systems</b><small>Real &amp; Sure</small></span></a>
+
+            <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-gray-700">
+                <a href="index.html" class="text-greenaro-dark font-semibold hover:text-greenaro-lime transition">Home</a>
+                <a href="about.html" class="hover:text-greenaro-lime transition">About</a>
+                <div class="dropdown relative py-6">
+                    <a href="#products" class="hover:text-greenaro-lime transition flex items-center gap-1">Products <i class="fa-solid fa-chevron-down text-[10px]"></i></a>
+                    <div class="dropdown-menu absolute top-full left-0 w-56 bg-white shadow-xl rounded-xl border border-gray-100 py-2">
+                        <a href="ups.html" data-jump="ups" class="block px-5 py-2.5 hover:bg-gray-50">UPS Systems</a>
+                        <a href="inverters.html" data-jump="inverter" class="block px-5 py-2.5 hover:bg-gray-50">Inverters</a>
+                        <a href="solar.html" data-jump="solar" class="block px-5 py-2.5 hover:bg-gray-50">Solar Systems</a>
+                        <a href="stabilizers.html" data-jump="stabilizer" class="block px-5 py-2.5 hover:bg-gray-50">Stabilizers</a>
+                        <a href="lithium.html" class="block px-5 py-2.5 hover:bg-gray-50">Lithium Range</a>
+                    </div>
+                </div>
+                <a href="industries.html" class="hover:text-greenaro-lime transition">Industries</a>
+                <a href="projects.html" class="hover:text-greenaro-lime transition">Projects</a>
+                <a href="clients.html" class="hover:text-greenaro-lime transition">Clients</a>
+                <a href="contact.html" class="hover:text-greenaro-lime transition">Contact</a>
+            </nav>
+
+            <div class="hidden sm:flex items-center">
+                <a href="contact.html" class="bg-greenaro-lime hover:bg-greenaro-limeHover text-white font-heading font-semibold text-sm px-6 py-3 rounded-full flex items-center gap-2 shadow-sm transition transform hover:-translate-y-0.5">
+                    Get a Quote <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" aria-label="Menu" class="lg:hidden text-2xl text-gray-800 focus:outline-none"><i class="fa-solid fa-bars"></i></button>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-1 shadow-lg">
+            <a href="index.html" class="block text-greenaro-dark font-semibold py-2">Home</a>
+            <a href="about.html" class="block text-gray-700 py-2">About</a>
+            <a href="#products" class="block text-gray-700 py-2">Products</a>
+            <a href="lithium.html" class="block text-gray-700 py-2">Lithium Range</a>
+            <a href="industries.html" class="block text-gray-700 py-2">Industries</a>
+            <a href="projects.html" class="block text-gray-700 py-2">Projects</a>
+            <a href="clients.html" class="block text-gray-700 py-2">Clients</a>
+            <a href="contact.html" class="block text-gray-700 py-2">Contact</a>
+            <div class="pt-3">
+                <a href="contact.html" class="w-full bg-greenaro-lime text-white font-semibold py-3 rounded-full flex items-center justify-center gap-2">Get a Quote <i class="fa-solid fa-arrow-right text-xs"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="rs-hero rs-hero--home relative bg-greenaro-dark text-white overflow-hidden" data-rs-hero>
+        <div class="rs-hero-bg"><img class="rs-watermark" src="assets/rslogo-mark.png" alt="" aria-hidden="true"></div>
+        <div class="rs-hero-carousel"><div class="hs" data-name="Online UPS" data-cat="UPS" data-tagline="5 to 200 KVA clean, continuous power" data-enq="Online UPS"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/ups-online.jpg')" role="img" aria-label="Online UPS"></div></div></div><div class="hs" data-name="Line Interactive UPS" data-cat="UPS" data-tagline="Affordable backup with voltage regulation" data-enq="Line Interactive UPS"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/ups-line-interactive.jpg')" role="img" aria-label="Line Interactive UPS"></div></div></div><div class="hs" data-name="Smart UPS (Sine-Wave)" data-cat="UPS" data-tagline="Smooth sine-wave power for sensitive loads" data-enq="Smart UPS"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/ups-smart.jpg')" role="img" aria-label="Smart UPS (Sine-Wave)"></div></div></div><div class="hs" data-name="Domestic Inverter" data-cat="Inverter" data-tagline="Keeps homes and shops running through cuts" data-enq="Domestic Inverter"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/inverter-domestic.jpg')" role="img" aria-label="Domestic Inverter"></div></div></div><div class="hs" data-name="Lift Inverter" data-cat="Inverter" data-tagline="Heavy-duty backup so elevators keep moving" data-enq="Lift Inverter"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/inverter-lift.jpg')" role="img" aria-label="Lift Inverter"></div></div></div><div class="hs" data-name="Solar On-Grid Inverter" data-cat="Solar" data-tagline="Cut electricity bills with grid-tied solar" data-enq="Solar On-Grid Inverter"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/solar-ongrid.jpg')" role="img" aria-label="Solar On-Grid Inverter"></div></div></div><div class="hs" data-name="Solar Off-Grid Inverter" data-cat="Solar" data-tagline="MPPT-charged independent solar power" data-enq="Solar Off-Grid Inverter"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/solar-offgrid.jpg')" role="img" aria-label="Solar Off-Grid Inverter"></div></div></div><div class="hs" data-name="Servo Voltage Stabilizer" data-cat="Stabilizer" data-tagline="Stable voltage for critical equipment" data-enq="Servo Voltage Stabilizer"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/stabilizer.jpg')" role="img" aria-label="Servo Voltage Stabilizer"></div></div></div><div class="hs" data-name="Lithium UPS" data-cat="Lithium · New" data-tagline="Maintenance-free Lithium Ferro Phosphate" data-enq="Lithium UPS"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/lithium-ups.jpg')" role="img" aria-label="Lithium UPS"></div></div></div><div class="hs" data-name="Lithium MPPT Inverter 1 KVA" data-cat="Lithium · New" data-tagline="Wall-mount lithium solar backup" data-enq="Lithium MPPT Inverter"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/lithium-mppt.jpg')" role="img" aria-label="Lithium MPPT Inverter 1 KVA"></div></div></div><span class="rs-hero-tag" data-rs-tag><i class="fa-solid fa-box-open"></i>Product</span><button type="button" class="rs-hero-arrow prev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button><button type="button" class="rs-hero-arrow next" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button><div class="rs-hero-dots"><button type="button" aria-label="Show slide 1"></button><button type="button" aria-label="Show slide 2"></button><button type="button" aria-label="Show slide 3"></button><button type="button" aria-label="Show slide 4"></button><button type="button" aria-label="Show slide 5"></button><button type="button" aria-label="Show slide 6"></button><button type="button" aria-label="Show slide 7"></button><button type="button" aria-label="Show slide 8"></button><button type="button" aria-label="Show slide 9"></button><button type="button" aria-label="Show slide 10"></button></div><div class="rs-hero-progress"><i></i></div></div>
+
+        <div class="rs-hero-inner relative max-w-7xl mx-auto px-4 sm:px-8 w-full">
+            <div class="rs-hero-copy space-y-5">
+                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold uppercase tracking-widest bg-white/10 border border-white/20 backdrop-blur px-4 py-2 rounded-full"><i class="fa-solid fa-award text-amber-400"></i> Real &amp; Sure &middot; Est. 2020</span>
+                <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-tight">Power Quality Solutions for a <span class="text-sky-300">Reliable Future</span></h1>
+                <p class="text-gray-200 text-base sm:text-lg max-w-xl leading-relaxed">Generic power equipment with branded quality. RS Systems &amp; Solutions LLP designs and supplies UPS, inverters, servo stabilizers, solar systems and lithium backup for industries, institutions and homes across India.</p>
+                <div class="flex flex-wrap gap-4 pt-1">
+                    <a href="#products" class="bg-greenaro-lime hover:bg-greenaro-limeHover text-white font-heading font-bold text-sm sm:text-base px-8 py-4 rounded-full inline-flex items-center gap-3 shadow-lg transition transform hover:-translate-y-0.5">Explore Products <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                    <a href="contact.html" class="bg-white/10 hover:bg-white/20 border border-white/30 backdrop-blur text-white font-heading font-bold text-sm sm:text-base px-8 py-4 rounded-full inline-flex items-center gap-3 transition"><i class="fa-solid fa-phone text-sm"></i> Talk to an Expert</a>
+                </div>
+                <div class="rs-chips" style="margin-top:1.25rem"><span class="rs-chip"><i class="fa-solid fa-check"></i> ISO 9001</span><span class="rs-chip"><i class="fa-solid fa-check"></i> ISO 14001</span><span class="rs-chip"><i class="fa-solid fa-check"></i> CE</span><span class="rs-chip"><i class="fa-solid fa-check"></i> RoHS</span><span class="rs-chip"><i class="fa-solid fa-check"></i> NABL</span></div>
+                <p class="text-sm text-gray-300 max-w-xl">Authorised dealers for branded UPS &amp; inverters, with AMC for all our products.</p>
+            </div>
+        </div>
+
+        <div class="rs-hero-stats">
+            <div class="max-w-7xl mx-auto px-4 sm:px-8 py-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="st"><span class="ic"><i class="fa-solid fa-user-tie"></i></span><div><b><span class="counter" data-target="32">0</span>+</b><small>Years of experience</small></div></div>
+                <div class="st"><span class="ic"><i class="fa-solid fa-earth-africa"></i></span><div><b><span class="counter" data-target="1000">0</span>+</b><small>Solar inverters exported</small></div></div>
+                <div class="st"><span class="ic"><i class="fa-solid fa-award"></i></span><div><b>CE &middot; ISO</b><small>NABL certified</small></div></div>
+                <div class="st"><span class="ic"><i class="fa-solid fa-screwdriver-wrench"></i></span><div><b>AMC</b><small>On every product</small></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATION / SECTOR MARQUEE -->
+    <div class="bg-greenaro-lime py-4 overflow-hidden text-white" aria-hidden="true">
+        <div class="marquee-track font-heading font-extrabold text-white text-base sm:text-lg uppercase tracking-widest whitespace-nowrap">
+            <span class="px-6">Online UPS</span><span class="px-2"><i class="fa-solid fa-plug text-white/60 text-sm"></i></span><span class="px-6">Inverters</span><span class="px-2"><i class="fa-solid fa-plug text-white/60 text-sm"></i></span><span class="px-6">Servo Stabilizers</span><span class="px-2"><i class="fa-solid fa-plug text-white/60 text-sm"></i></span><span class="px-6">Solar Systems</span><span class="px-2"><i class="fa-solid fa-plug text-white/60 text-sm"></i></span><span class="px-6">Lithium Batteries</span><span class="px-2"><i class="fa-solid fa-plug text-white/60 text-sm"></i></span><span class="px-6">Isolation Transformers</span><span class="px-2"><i class="fa-solid fa-plug text-white/60 text-sm"></i></span>
+            <span class="px-6">Online UPS</span><span class="px-2"><i class="fa-solid fa-plug text-white/60 text-sm"></i></span><span class="px-6">Inverters</span><span class="px-2"><i class="fa-solid fa-plug text-white/60 text-sm"></i></span><span class="px-6">Servo Stabilizers</span><span class="px-2"><i class="fa-solid fa-plug text-white/60 text-sm"></i></span><span class="px-6">Solar Systems</span><span class="px-2"><i class="fa-solid fa-plug text-white/60 text-sm"></i></span><span class="px-6">Lithium Batteries</span><span class="px-2"><i class="fa-solid fa-plug text-white/60 text-sm"></i></span><span class="px-6">Isolation Transformers</span><span class="px-2"><i class="fa-solid fa-plug text-white/60 text-sm"></i></span>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-20 lg:py-28 bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div class="reveal lg:col-span-6 space-y-6">
+                <span class="inline-block text-xs font-bold uppercase tracking-widest text-gray-600 bg-white px-4 py-1.5 rounded-full shadow-sm">About RS Systems</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-gray-900 tracking-tight">A quality-conscious Indian company for customized power products</h2>
+                <p class="text-gray-600 leading-relaxed text-base sm:text-lg">RS Systems &amp; Solutions LLP is a CE, ISO 9001:2015 and NABL certified Indian company that provides customized power quality products and services meeting the highest industry standards &mdash; from small organizations to big industries.</p>
+                <p class="text-gray-600 leading-relaxed">Our backbone is <strong class="text-gray-900">Mr. N. S. Ramsing (Malustay)</strong>, a seasoned professional with 32 years in this industry. With his leadership we deliver exceptional quality, timely delivery and dependable after-sales service, while continuously adopting updated technology at competitive cost.</p>
+                <ul class="grid sm:grid-cols-2 gap-3 pt-2 text-sm font-semibold text-gray-800">
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-0.5"></i> Customized power <br>conditioning products</li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-0.5"></i> Timely delivery &amp; competitive pricing</li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-0.5"></i> Superior after-sales service &amp; AMC</li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-0.5"></i> Authorised dealers of branded UPS <br>&amp; inverters</li>
+                </ul>
+                <a href="contact.html" class="bg-greenaro-lime hover:bg-greenaro-limeHover text-white font-heading font-bold text-sm sm:text-base px-8 py-4 rounded-full inline-flex items-center gap-3 shadow-md transition transform hover:-translate-y-0.5">
+                    Discuss your requirement <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+
+            <div class="reveal zoom lg:col-span-6 grid grid-cols-12 gap-5 items-stretch">
+                <div class="col-span-7 relative bg-white rounded-3xl shadow-2xl overflow-hidden p-6 flex items-center justify-center min-h-[360px]">
+                    <img src="assets/ups-online.jpg" alt="RS Online UPS" class="max-h-[320px] w-auto object-contain mix-blend-multiply">
+                    <span class="absolute top-4 left-4 text-[11px] font-bold uppercase tracking-wider bg-greenaro-dark text-white px-3 py-1 rounded-full">Online UPS</span>
+                    <div class="absolute bottom-4 right-4 w-24 h-24 rounded-full bg-greenaro-lime flex items-center justify-center shadow-xl">
+                        <svg viewBox="0 0 100 100" class="w-full h-full absolute p-1 animate-spin-slow text-white">
+                            <path id="curve" fill="transparent" d="M 15,50 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
+                            <text style="font-size:9px;font-weight:700;letter-spacing:1.5px" fill="currentColor">
+                                <textPath href="#curve">REAL &amp; SURE • POWER QUALITY • SINCE 2020 •</textPath>
+                            </text>
+                        </svg>
+                        <i class="fa-solid fa-plug text-white text-lg z-10"></i>
+                    </div>
+                </div>
+                <div class="col-span-5 flex flex-col gap-5">
+                    <div class="bg-greenaro-dark text-white p-6 rounded-3xl shadow-xl">
+                        <h3 class="font-heading font-extrabold text-3xl sm:text-4xl"><span class="counter" data-target="32">0</span>+</h3>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider font-medium">Years of industry experience</p>
+                    </div>
+                    <div class="relative bg-white rounded-3xl shadow-lg overflow-hidden p-4 flex-1 flex items-center justify-center">
+                        <img src="assets/stabilizer.jpg" alt="RS Servo Stabilizer" class="max-h-[150px] w-auto object-contain mix-blend-multiply">
+                        <span class="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider bg-greenaro-dark text-white px-2.5 py-1 rounded-full">Stabilizer</span>
+                    </div>
+                    <div class="bg-greenaro-lime text-white p-6 rounded-3xl shadow-xl">
+                        <h3 class="font-heading font-extrabold text-3xl sm:text-4xl"><span class="counter" data-target="1000">0</span>+</h3>
+                        <p class="text-xs mt-1 uppercase tracking-wider font-semibold">Solar inverters exported</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Value cards -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="reveal bg-white rounded-3xl p-8 shadow-md border border-gray-100">
+                <div class="w-14 h-14 rounded-2xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center text-2xl mb-5"><i class="fa-solid fa-gears"></i></div>
+                <h3 class="font-heading font-bold text-xl text-gray-900 mb-2">Customized Power Quality Products</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Every industry has unique power needs. We deliver tailored voltage stabilizers, power factor panels, isolation transformers, solar inverters, UPS systems and batteries to combat harsh power supply conditions.</p>
+            </div>
+            <div class="reveal bg-white rounded-3xl p-8 shadow-md border border-gray-100" style="transition-delay:120ms">
+                <div class="w-14 h-14 rounded-2xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center text-2xl mb-5"><i class="fa-solid fa-user-tie"></i></div>
+                <h3 class="font-heading font-bold text-xl text-gray-900 mb-2">Reliable Expertise &amp; Experience</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Led by a professional with deep understanding of the power quality domain, our team makes sure products and services meet the highest quality standards and exceed expectations.</p>
+            </div>
+            <div class="reveal bg-white rounded-3xl p-8 shadow-md border border-gray-100" style="transition-delay:240ms">
+                <div class="w-14 h-14 rounded-2xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center text-2xl mb-5"><i class="fa-solid fa-handshake-angle"></i></div>
+                <h3 class="font-heading font-bold text-xl text-gray-900 mb-2">Commitment to Customer Satisfaction</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Timely delivery, superior after-sales support and competitive pricing &mdash; we build long-term relationships based on trust, reliability and mutual success.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="reveal text-center max-w-3xl mx-auto mb-12">
+                <span class="inline-block text-xs font-bold uppercase tracking-widest text-gray-600 bg-gray-100 px-4 py-1.5 rounded-full mb-4">Our Products</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-gray-900 tracking-tight">Power equipment built to protect what matters</h2>
+                <p class="mt-4 text-gray-600 text-base sm:text-lg">Relevant, affordable, easy-to-maintain products that offer true value for money &mdash; every one covered by our Annual Maintenance Contracts.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-12" id="product-filters">
+                <button class="pfilter active border border-gray-200 text-sm font-semibold px-5 py-2.5 rounded-full transition hover:border-greenaro-lime" data-filter="all">All</button>
+                <button class="pfilter border border-gray-200 text-sm font-semibold px-5 py-2.5 rounded-full transition hover:border-greenaro-lime" data-filter="ups">UPS</button>
+                <button class="pfilter border border-gray-200 text-sm font-semibold px-5 py-2.5 rounded-full transition hover:border-greenaro-lime" data-filter="inverter">Inverters</button>
+                <button class="pfilter border border-gray-200 text-sm font-semibold px-5 py-2.5 rounded-full transition hover:border-greenaro-lime" data-filter="solar">Solar</button>
+                <button class="pfilter border border-gray-200 text-sm font-semibold px-5 py-2.5 rounded-full transition hover:border-greenaro-lime" data-filter="stabilizer">Stabilizers</button>
+                <button class="pfilter border border-gray-200 text-sm font-semibold px-5 py-2.5 rounded-full transition hover:border-greenaro-lime" data-filter="lithium">Lithium</button>
+            </div>
+
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <article class="pcard bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden flex flex-col" data-cat="ups">
+                    <div class="h-56 bg-slate-50 flex items-center justify-center p-5"><img src="assets/ups-online.jpg" alt="Online UPS" class="max-h-full w-auto object-contain"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-greenaro-lime">UPS</span>
+                        <h3 class="font-heading font-bold text-lg text-gray-900 mt-1 mb-2">Online UPS Systems</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed flex-1">Continuous, clean power for servers, labs and critical loads &mdash; installed from 5 KVA up to 200 KVA.</p>
+                        <a href="contact.html" data-enquire="Online UPS" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-greenaro-lime hover:gap-3 transition-all">Enquire <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                    </div>
+                </article>
+                <article class="pcard bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden flex flex-col" data-cat="ups">
+                    <div class="h-56 bg-slate-50 flex items-center justify-center p-5"><img src="assets/ups-line-interactive.jpg" alt="Line Interactive UPS" class="max-h-full w-auto object-contain"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-greenaro-lime">UPS</span>
+                        <h3 class="font-heading font-bold text-lg text-gray-900 mt-1 mb-2">Line Interactive UPS</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed flex-1">Compact, affordable backup with voltage regulation for computers, printers and small offices.</p>
+                        <a href="contact.html" data-enquire="Line Interactive UPS" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-greenaro-lime hover:gap-3 transition-all">Enquire <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                    </div>
+                </article>
+                <article class="pcard bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden flex flex-col" data-cat="ups">
+                    <div class="h-56 bg-slate-50 flex items-center justify-center p-5"><img src="assets/ups-smart.jpg" alt="Smart UPS Sine-Wave" class="max-h-full w-auto object-contain"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-greenaro-lime">UPS</span>
+                        <h3 class="font-heading font-bold text-lg text-gray-900 mt-1 mb-2">Smart UPS (Sine-Wave)</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed flex-1">Sine-wave output for sensitive electronics, lighting loads and motors that need smooth, <br>stable power.</p>
+                        <a href="contact.html" data-enquire="Smart UPS" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-greenaro-lime hover:gap-3 transition-all">Enquire <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                    </div>
+                </article>
+                <article class="pcard bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden flex flex-col" data-cat="inverter">
+                    <div class="h-56 bg-slate-50 flex items-center justify-center p-5"><img src="assets/inverter-domestic.jpg" alt="Domestic Inverter" class="max-h-full w-auto object-contain"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-greenaro-lime">Inverter</span>
+                        <h3 class="font-heading font-bold text-lg text-gray-900 mt-1 mb-2">Domestic Inverter</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed flex-1">Static / sine-wave inverters that keep homes, shops and small offices running through power cuts.</p>
+                        <a href="contact.html" data-enquire="Domestic Inverter" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-greenaro-lime hover:gap-3 transition-all">Enquire <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                    </div>
+                </article>
+                <article class="pcard bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden flex flex-col" data-cat="inverter">
+                    <div class="h-56 bg-slate-50 flex items-center justify-center p-5"><img src="assets/inverter-lift.jpg" alt="Lift Inverter" class="max-h-full w-auto object-contain"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-greenaro-lime">Inverter</span>
+                        <h3 class="font-heading font-bold text-lg text-gray-900 mt-1 mb-2">Lift Inverter</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed flex-1">Heavy-duty static inverter / lift UPS so elevators in buildings keep moving during outages.</p>
+                        <a href="contact.html" data-enquire="Lift Inverter" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-greenaro-lime hover:gap-3 transition-all">Enquire <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                    </div>
+                </article>
+                <article class="pcard bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden flex flex-col" data-cat="solar">
+                    <div class="h-56 bg-slate-50 flex items-center justify-center p-5"><img src="assets/solar-ongrid.jpg" alt="Solar On-Grid Inverter" class="max-h-full w-auto object-contain"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-greenaro-lime">Solar</span>
+                        <h3 class="font-heading font-bold text-lg text-gray-900 mt-1 mb-2">Solar On-Grid Inverter</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed flex-1">Grid-tied solar inverters that cut electricity bills by feeding clean energy into your existing supply.</p>
+                        <a href="contact.html" data-enquire="Solar On-Grid Inverter" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-greenaro-lime hover:gap-3 transition-all">Enquire <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                    </div>
+                </article>
+                <article class="pcard bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden flex flex-col" data-cat="solar">
+                    <div class="h-56 bg-slate-50 flex items-center justify-center p-5"><img src="assets/solar-offgrid.jpg" alt="Solar Off-Grid Inverter with MPPT charger" class="max-h-full w-auto object-contain"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-greenaro-lime">Solar</span>
+                        <h3 class="font-heading font-bold text-lg text-gray-900 mt-1 mb-2">Solar Off-Grid Inverter</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed flex-1">Off-grid inverter with MPPT charger for independent solar power &mdash; exported to Zambia, Kenya &amp; Uganda.</p>
+                        <a href="contact.html" data-enquire="Solar Off-Grid Inverter" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-greenaro-lime hover:gap-3 transition-all">Enquire <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                    </div>
+                </article>
+                <article class="pcard bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden flex flex-col" data-cat="stabilizer">
+                    <div class="h-56 bg-slate-50 flex items-center justify-center p-5"><img src="assets/stabilizer.jpg" alt="Servo Voltage Stabilizer" class="max-h-full w-auto object-contain"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-greenaro-lime">Stabilizer</span>
+                        <h3 class="font-heading font-bold text-lg text-gray-900 mt-1 mb-2">Servo Voltage Stabilizer</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed flex-1">Static and servo stabilizers delivering stabilized voltage to critical instruments, machines and hospital equipment.</p>
+                        <a href="contact.html" data-enquire="Servo Voltage Stabilizer" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-greenaro-lime hover:gap-3 transition-all">Enquire <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                    </div>
+                </article>
+                <article class="pcard bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden flex flex-col" data-cat="lithium">
+                    <div class="h-56 bg-slate-50 flex items-center justify-center p-5"><img src="assets/lithium-ups.jpg" alt="Lithium UPS" class="max-h-full w-auto object-contain"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-greenaro-lime">Lithium &middot; New</span>
+                        <h3 class="font-heading font-bold text-lg text-gray-900 mt-1 mb-2">Lithium UPS</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed flex-1">Lithium Ferro Phosphate backup no maintenance and a small footprint.</p>
+                        <a href="contact.html" data-enquire="Lithium UPS" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-greenaro-lime hover:gap-3 transition-all">Enquire <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                    </div>
+                </article>
+                <article class="pcard bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden flex flex-col" data-cat="lithium">
+                    <div class="h-56 bg-slate-50 flex items-center justify-center p-5"><img src="assets/lithium-mppt.jpg" alt="Lithium MPPT Inverter 1KVA" class="max-h-full w-auto object-contain"></div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-greenaro-lime">Lithium &middot; New</span>
+                        <h3 class="font-heading font-bold text-lg text-gray-900 mt-1 mb-2">Lithium MPPT Inverter</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed flex-1">Wall-mount 1 KVA lithium inverter with MPPT charging for clean, compact solar backup.</p>
+                        <a href="contact.html" data-enquire="Lithium MPPT Inverter" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-greenaro-lime hover:gap-3 transition-all">Enquire <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- More products -->
+            <div class="reveal mt-14 bg-gray-50 border border-gray-200 rounded-3xl p-8 sm:p-10">
+                <h3 class="font-heading font-bold text-xl text-gray-900 mb-5"><i class="fa-solid fa-boxes-stacked text-greenaro-lime mr-2"></i>Our products at a glance</h3>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3 text-sm text-gray-700">
+                    <div class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Solar off-grid inverter with MPPT charger</div>
+                    <div class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Solar on-grid inverter</div>
+                    <div class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Static / sine-wave inverter / lift UPS</div>
+                    <div class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Online UPS systems</div>
+                    <div class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Static / servo voltage stabilizers</div>
+                    <div class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>SMF / tubular / solar / lithium batteries</div>
+                    <div class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Solar water heater, pumps &amp; street lights</div>
+                    <div class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Isolation transformer / CVT &ndash; 1&Oslash; &amp; 3&Oslash; up to 25 KVA</div>
+                    <div class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Battery chargers &amp; water softeners and<br> many more</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LITHIUM / NEW RANGE -->
+    <section id="lithium" class="py-20 lg:py-28 bg-greenaro-dark text-white relative overflow-hidden circuit">
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-greenaro-lime/30 blur-3xl"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="reveal lg:col-span-5 space-y-6">
+                <span class="inline-block text-xs font-bold uppercase tracking-widest text-sky-300 bg-white/10 px-4 py-1.5 rounded-full">Our new product range</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight">Lithium inside. Maintenance out.</h2>
+                <p class="text-gray-300 leading-relaxed text-base sm:text-lg">Our new lithium range uses Lithium Ferro Phosphate batteries for no maintenance and a small footprint &mdash; ideal where space is tight and uptime is non-negotiable.</p>
+                <ul class="space-y-3 text-sm text-gray-200">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-sky-300"></i> Lithium UPS with built-in output &amp; battery breakers</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-sky-300"></i> 1 KVA wall-mount Lithium MPPT inverter</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-sky-300"></i> No-maintenance Lithium Ferro Phosphate cells</li>
+                </ul>
+                <a href="contact.html" data-enquire="Lithium range" class="bg-white text-greenaro-dark hover:bg-sky-100 font-heading font-bold text-sm sm:text-base px-8 py-4 rounded-full inline-flex items-center gap-3 shadow-lg transition transform hover:-translate-y-0.5">
+                    Request lithium quote <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+            <div class="reveal zoom lg:col-span-7 grid grid-cols-1 sm:grid-cols-12 gap-6">
+                <div class="sm:col-span-7 bg-white rounded-3xl p-6 shadow-2xl flex flex-col items-center justify-center min-h-[320px]">
+                    <img src="assets/lithium-ups.jpg" alt="RS Lithium UPS" class="max-h-64 w-auto object-contain mix-blend-multiply">
+                    <p class="mt-4 text-sm font-heading font-bold text-gray-900">Lithium UPS</p>
+                </div>
+                <div class="sm:col-span-5 bg-white rounded-3xl p-6 shadow-2xl flex flex-col items-center justify-center min-h-[320px]">
+                    <img src="assets/lithium-mppt.jpg" alt="RS Lithium MPPT Inverter 1KVA" class="max-h-64 w-auto object-contain mix-blend-multiply">
+                    <p class="mt-4 text-sm font-heading font-bold text-gray-900">Lithium MPPT 1 KVA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY POWER BACKUP -->
+    <section class="py-20 lg:py-28 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="reveal text-center max-w-3xl mx-auto mb-14">
+                <span class="inline-block text-xs font-bold uppercase tracking-widest text-gray-600 bg-white px-4 py-1.5 rounded-full mb-4 shadow-sm">Why power backup</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-gray-900 tracking-tight">What a single power cut can cost you</h2>
+                <p class="mt-4 text-gray-600 text-base sm:text-lg">Harsh power supply and sudden failure hurt productivity, equipment and data. A proper backup system is cheaper than the downtime.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="svc reveal bg-white rounded-3xl p-8 border border-gray-200">
+                    <span class="svc-num absolute top-4 right-6 font-heading font-extrabold text-6xl leading-none select-none">01</span>
+                    <div class="svc-icon w-14 h-14 rounded-2xl flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-database"></i></div>
+                    <h3 class="font-heading font-bold text-lg text-gray-900 mb-2">Data loss</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Sudden power failure can wipe unsaved work and corrupt critical data.</p>
+                </div>
+                <div class="svc reveal bg-white rounded-3xl p-8 border border-gray-200" style="transition-delay:100ms">
+                    <span class="svc-num absolute top-4 right-6 font-heading font-extrabold text-6xl leading-none select-none">02</span>
+                    <div class="svc-icon w-14 h-14 rounded-2xl flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-user-clock"></i></div>
+                    <h3 class="font-heading font-bold text-lg text-gray-900 mb-2">Lost man-hours</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Idle teams and stopped machines turn outages into direct productivity loss.</p>
+                </div>
+                <div class="svc reveal bg-white rounded-3xl p-8 border border-gray-200" style="transition-delay:200ms">
+                    <span class="svc-num absolute top-4 right-6 font-heading font-extrabold text-6xl leading-none select-none">03</span>
+                    <div class="svc-icon w-14 h-14 rounded-2xl flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="font-heading font-bold text-lg text-gray-900 mb-2">Unsafe costly equipment</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Surges and unstable voltage shorten the life of expensive machinery and electronics.</p>
+                </div>
+                <div class="svc reveal bg-white rounded-3xl p-8 border border-gray-200">
+                    <span class="svc-num absolute top-4 right-6 font-heading font-extrabold text-6xl leading-none select-none">04</span>
+                    <div class="svc-icon w-14 h-14 rounded-2xl flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-video"></i></div>
+                    <h3 class="font-heading font-bold text-lg text-gray-900 mb-2">Meetings &amp; entertainment</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Lose news, Zoom meetings, entertainment and domestic appliances the moment power drops.</p>
+                </div>
+                <div class="svc reveal bg-white rounded-3xl p-8 border border-gray-200" style="transition-delay:100ms">
+                    <span class="svc-num absolute top-4 right-6 font-heading font-extrabold text-6xl leading-none select-none">05</span>
+                    <div class="svc-icon w-14 h-14 rounded-2xl flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-gauge-high"></i></div>
+                    <h3 class="font-heading font-bold text-lg text-gray-900 mb-2">Unstable voltage</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Critical instruments need stabilized voltage &mdash; a stabilizer is not optional.</p>
+                </div>
+                <div class="svc reveal bg-white rounded-3xl p-8 border border-gray-200" style="transition-delay:200ms">
+                    <span class="svc-num absolute top-4 right-6 font-heading font-extrabold text-6xl leading-none select-none">06</span>
+                    <div class="svc-icon w-14 h-14 rounded-2xl flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-battery-full"></i></div>
+                    <h3 class="font-heading font-bold text-lg text-gray-900 mb-2">Go lithium</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Lithium Ferro Phosphate batteries mean no maintenance and a small footprint.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INDUSTRIES -->
+    <section id="industries" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="reveal text-center max-w-3xl mx-auto mb-14">
+                <span class="inline-block text-xs font-bold uppercase tracking-widest text-gray-600 bg-gray-100 px-4 py-1.5 rounded-full mb-4">Industries we serve</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-gray-900 tracking-tight">Where our products are required</h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+                <div class="reveal border border-gray-200 rounded-3xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition bg-white">
+                    <div class="mx-auto w-14 h-14 rounded-2xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-hospital"></i></div>
+                    <h3 class="font-heading font-bold text-sm sm:text-base text-gray-900">Hospitals, Labs &amp; Medical</h3>
+                    <p class="text-xs text-gray-500 mt-1">Analytical &amp; medical equipment</p>
+                </div>
+                <div class="reveal border border-gray-200 rounded-3xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition bg-white" style="transition-delay:80ms">
+                    <div class="mx-auto w-14 h-14 rounded-2xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-industry"></i></div>
+                    <h3 class="font-heading font-bold text-sm sm:text-base text-gray-900">Textile Machines</h3>
+                    <p class="text-xs text-gray-500 mt-1">Uninterrupted mill operations</p>
+                </div>
+                <div class="reveal border border-gray-200 rounded-3xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition bg-white" style="transition-delay:160ms">
+                    <div class="mx-auto w-14 h-14 rounded-2xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-building-columns"></i></div>
+                    <h3 class="font-heading font-bold text-sm sm:text-base text-gray-900">Banking Sector</h3>
+                    <p class="text-xs text-gray-500 mt-1">Branches, ATMs &amp; data rooms</p>
+                </div>
+                <div class="reveal border border-gray-200 rounded-3xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition bg-white" style="transition-delay:240ms">
+                    <div class="mx-auto w-14 h-14 rounded-2xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-clapperboard"></i></div>
+                    <h3 class="font-heading font-bold text-sm sm:text-base text-gray-900">Entertainment</h3>
+                    <p class="text-xs text-gray-500 mt-1">Studios &amp; media industries</p>
+                </div>
+                <div class="reveal border border-gray-200 rounded-3xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition bg-white">
+                    <div class="mx-auto w-14 h-14 rounded-2xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-server"></i></div>
+                    <h3 class="font-heading font-bold text-sm sm:text-base text-gray-900">Servers &amp; IT</h3>
+                    <p class="text-xs text-gray-500 mt-1">High-end servers, computers, printers</p>
+                </div>
+                <div class="reveal border border-gray-200 rounded-3xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition bg-white" style="transition-delay:80ms">
+                    <div class="mx-auto w-14 h-14 rounded-2xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-elevator"></i></div>
+                    <h3 class="font-heading font-bold text-sm sm:text-base text-gray-900">Lifts, Lighting &amp; Motors</h3>
+                    <p class="text-xs text-gray-500 mt-1">Lighting loads &amp; elevators</p>
+                </div>
+                <div class="reveal border border-gray-200 rounded-3xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition bg-white" style="transition-delay:160ms">
+                    <div class="mx-auto w-14 h-14 rounded-2xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-gears"></i></div>
+                    <h3 class="font-heading font-bold text-sm sm:text-base text-gray-900">CNC, Printing &amp; Packaging</h3>
+                    <p class="text-xs text-gray-500 mt-1">CNC, printing &amp; Tetra Pak machines</p>
+                </div>
+                <div class="reveal border border-gray-200 rounded-3xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition bg-white" style="transition-delay:240ms">
+                    <div class="mx-auto w-14 h-14 rounded-2xl bg-greenaro-lime/10 text-greenaro-lime flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-tower-broadcast"></i></div>
+                    <h3 class="font-heading font-bold text-sm sm:text-base text-gray-900">Internet &amp; Cable TV</h3>
+                    <p class="text-xs text-gray-500 mt-1">ISP &amp; cable operators</p>
+                </div>
+            </div>
+
+            <div class="reveal mt-12 bg-greenaro-dark text-white rounded-3xl p-8 sm:p-10 flex flex-col lg:flex-row lg:items-center gap-6">
+                <h3 class="font-heading font-bold text-xl lg:w-1/4 shrink-0">We work with</h3>
+                <div class="flex flex-wrap gap-2.5">
+                    <span class="bg-white/10 border border-white/15 px-4 py-2 rounded-full text-sm">Government sectors</span>
+                    <span class="bg-white/10 border border-white/15 px-4 py-2 rounded-full text-sm">Electrical consultants</span>
+                    <span class="bg-white/10 border border-white/15 px-4 py-2 rounded-full text-sm">Pharma &amp; chemical companies</span>
+                    <span class="bg-white/10 border border-white/15 px-4 py-2 rounded-full text-sm">Schools, colleges &amp; universities</span>
+                    <span class="bg-white/10 border border-white/15 px-4 py-2 rounded-full text-sm">Hospitals</span>
+                    <span class="bg-white/10 border border-white/15 px-4 py-2 rounded-full text-sm">Banks &amp; finance institutions</span>
+                    <span class="bg-white/10 border border-white/15 px-4 py-2 rounded-full text-sm">Bungalow owners</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUCCESS STORIES -->
+    <section id="projects" class="py-20 lg:py-28 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="reveal flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+                <div>
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-gray-600 bg-white px-4 py-1.5 rounded-full mb-4 shadow-sm">Success stories</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-gray-900 tracking-tight">Installed where reliability matters</h2>
+                </div>
+                <a href="contact.html" class="bg-greenaro-lime hover:bg-greenaro-limeHover text-white font-heading font-bold text-sm px-7 py-3.5 rounded-full inline-flex items-center gap-2 shadow-sm transition self-start md:self-auto">
+                    Start your project <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="reveal bg-white rounded-3xl p-7 shadow-md border border-gray-100">
+                    <p class="font-heading font-extrabold text-4xl text-greenaro-lime">5 <span class="text-lg">KVA</span></p>
+                    <h3 class="font-heading font-bold text-gray-900 mt-2">Online UPS</h3>
+                    <p class="text-sm text-gray-600 mt-1">Indian Navy, Pune</p>
+                </div>
+                <div class="reveal bg-white rounded-3xl p-7 shadow-md border border-gray-100" style="transition-delay:80ms">
+                    <p class="font-heading font-extrabold text-4xl text-greenaro-lime">18 <span class="text-lg">&times; 5 KVA</span></p>
+                    <h3 class="font-heading font-bold text-gray-900 mt-2">Stabilizers</h3>
+                    <p class="text-sm text-gray-600 mt-1">KEM Hospital, Pune &mdash; for various hospital equipment</p>
+                </div>
+                <div class="reveal bg-white rounded-3xl p-7 shadow-md border border-gray-100" style="transition-delay:160ms">
+                    <p class="font-heading font-extrabold text-4xl text-greenaro-lime">10 <span class="text-lg">KVA</span></p>
+                    <h3 class="font-heading font-bold text-gray-900 mt-2">Stabilizer &amp; Solar Inverter</h3>
+                    <p class="text-sm text-gray-600 mt-1">Premium residential installation, Cuff Parade, Mumbai</p>
+                </div>
+                <div class="reveal bg-white rounded-3xl p-7 shadow-md border border-gray-100" style="transition-delay:240ms">
+                    <p class="font-heading font-extrabold text-4xl text-greenaro-lime">160 <span class="text-lg">KVA</span></p>
+                    <h3 class="font-heading font-bold text-gray-900 mt-2">Online UPS</h3>
+                    <p class="text-sm text-gray-600 mt-1">Mercedes-Benz, Cochin</p>
+                </div>
+                <div class="reveal bg-white rounded-3xl p-7 shadow-md border border-gray-100">
+                    <p class="font-heading font-extrabold text-4xl text-greenaro-lime">2 &times; 200 <span class="text-lg">KVA</span></p>
+                    <h3 class="font-heading font-bold text-gray-900 mt-2">Online UPS</h3>
+                    <p class="text-sm text-gray-600 mt-1">Wallace Pharma, Himachal Pradesh</p>
+                </div>
+                <div class="reveal bg-white rounded-3xl p-7 shadow-md border border-gray-100" style="transition-delay:80ms">
+                    <p class="font-heading font-extrabold text-4xl text-greenaro-lime">2 &times; 100 + 2 &times; 80 <span class="text-lg">KVA</span></p>
+                    <h3 class="font-heading font-bold text-gray-900 mt-2">Online UPS</h3>
+                    <p class="text-sm text-gray-600 mt-1">Suntech Pharma, Gujarat</p>
+                </div>
+                <div class="reveal bg-white rounded-3xl p-7 shadow-md border border-gray-100" style="transition-delay:160ms">
+                    <p class="font-heading font-extrabold text-4xl text-greenaro-lime">1000 <span class="text-lg">KVA</span></p>
+                    <h3 class="font-heading font-bold text-gray-900 mt-2">Stabilizer + 2 &times; 40 &amp; 160 KVA UPS</h3>
+                    <p class="text-sm text-gray-600 mt-1">Clinisupplies India Pvt. Ltd., Ujjain</p>
+                </div>
+                <div class="reveal bg-greenaro-dark text-white rounded-3xl p-7 shadow-md" style="transition-delay:240ms">
+                    <p class="font-heading font-extrabold text-4xl text-sky-300">1000 <span class="text-lg">nos.</span></p>
+                    <h3 class="font-heading font-bold mt-2">Solar inverters &amp; batteries</h3>
+                    <p class="text-sm text-gray-300 mt-1">Exported to Zambia, Kenya &amp; Uganda</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTS -->
+    <section id="clients" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="reveal text-center max-w-3xl mx-auto mb-12">
+                <span class="inline-block text-xs font-bold uppercase tracking-widest text-gray-600 bg-gray-100 px-4 py-1.5 rounded-full mb-4">Our clients</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-gray-900 tracking-tight">Trusted by esteemed organizations</h2>
+                <p class="mt-4 text-gray-600 text-base sm:text-lg">From national banks and defence services to universities and pharma majors.</p>
+            </div>
+            <div class="reveal flex flex-wrap justify-center gap-3">
+                <span class="client-chip">Bank of India</span>
+                <span class="client-chip">State Bank of India</span>
+                <span class="client-chip">Indian Bank</span>
+                <span class="client-chip">Indian Army</span>
+                <span class="client-chip">Indian Navy</span>
+                <span class="client-chip">Security Printing &amp; Minting Corp. of India</span>
+                <span class="client-chip">Mormugao Port Authority</span>
+                <span class="client-chip">North Maharashtra University</span>
+                <span class="client-chip">Dr. Babasaheb Ambedkar Technological University</span>
+                <span class="client-chip">Warana Engineering College</span>
+                <span class="client-chip">Indoco Remedies</span>
+                <span class="client-chip">Galentic Pharma</span>
+                <span class="client-chip">Wallace Pharmaceuticals</span>
+                <span class="client-chip">Suntech Pharma</span>
+                <span class="client-chip">Clinisupplies India Pvt. Ltd.</span>
+                <span class="client-chip">Gokul Dudh</span>
+                <span class="client-chip">Simbhaoli Sugars</span>
+                <span class="client-chip">United Telecom</span>
+                <span class="client-chip">Pudhari Publication</span>
+                <span class="client-chip">Pawankhind Resort</span>
+            </div>
+            <style>
+                .client-chip { display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1.2rem; border:1px solid #e5e7eb; border-radius:9999px; background:#fff; font-size:.875rem; font-weight:600; color:#1f2937; box-shadow:0 1px 2px rgba(0,0,0,.04); transition:all .25s ease; }
+                .client-chip::before { content:"\f19c"; font-family:"Font Awesome 6 Free"; font-weight:900; color:var(--brand-primary); font-size:.8rem; }
+                .client-chip:hover { border-color:var(--brand-primary); transform:translateY(-2px); box-shadow:0 8px 20px -8px rgba(0,86,179,.4); }
+            </style>
+        </div>
+    </section>
+
+    <!-- SERVICE NETWORK -->
+    <section class="py-20 lg:py-28 bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="reveal lg:col-span-5 space-y-6">
+                <span class="inline-block text-xs font-bold uppercase tracking-widest text-gray-600 bg-white px-4 py-1.5 rounded-full shadow-sm">Nationwide service network</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-gray-900 tracking-tight">Prompt support wherever you are</h2>
+                <p class="text-gray-600 leading-relaxed text-base sm:text-lg">Our dedicated team provides on-site consultations, installations and maintenance across the country &mdash; plus Annual Maintenance Contracts (AMC) for all our products, so they perform for years.</p>
+                <div class="flex items-start gap-4 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-greenaro-lime text-white flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                    <div>
+                        <h3 class="font-heading font-bold text-gray-900">Annual Maintenance Contracts</h3>
+                        <p class="text-sm text-gray-600 mt-1">Optimal performance and longevity for every product we supply.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal zoom lg:col-span-7 bg-white rounded-3xl shadow-xl border border-gray-100 p-8 sm:p-10">
+                <h3 class="font-heading font-bold text-lg text-gray-900 mb-4 flex items-center gap-2"><i class="fa-solid fa-location-dot text-greenaro-lime"></i> Maharashtra</h3>
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <span class="text-sm font-semibold bg-greenaro-lime text-white px-4 py-1.5 rounded-full">Mumbai</span>
+                    <span class="text-sm font-semibold bg-greenaro-lime text-white px-4 py-1.5 rounded-full">Thane</span>
+                    <span class="text-sm font-semibold bg-greenaro-lime text-white px-4 py-1.5 rounded-full">Panvel</span>
+                    <span class="text-sm font-semibold bg-greenaro-lime text-white px-4 py-1.5 rounded-full">Pune</span>
+                    <span class="text-sm font-semibold bg-greenaro-lime text-white px-4 py-1.5 rounded-full">Kolhapur</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Nashik</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Nagpur</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Aurangabad</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Nanded</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Ratnagiri</span>
+                </div>
+                <h3 class="font-heading font-bold text-lg text-gray-900 mb-4 flex items-center gap-2"><i class="fa-solid fa-map-location-dot text-greenaro-lime"></i> Across India</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Goa</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Gujarat</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Rajasthan</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Andhra Pradesh</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Telangana</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Kerala</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Karnataka</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Tamil Nadu</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Odisha</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Delhi / UP</span>
+                    <span class="text-sm font-semibold bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full">Jharkhand</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <footer id="contact" class="bg-greenaro-dark text-white pt-20 pb-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20">
+                <div class="reveal lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-300 bg-white/10 px-4 py-1.5 rounded-full inline-block">Contact us</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Tell us your power problem. We'll size the solution.</h2>
+                    <p class="text-gray-300 leading-relaxed">Contact us today to discuss your specific requirements, receive expert guidance and find the perfect power quality solution for your business.</p>
+                    <ul class="space-y-5 text-sm">
+                        <li class="flex gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0"><i class="fa-solid fa-phone text-sky-300"></i></span><span><span class="block text-gray-400 text-xs uppercase tracking-wider">Call us</span><a href="tel:+919004657056" class="hover:text-sky-300">9004 657 056</a> / <a href="tel:+919004657036" class="hover:text-sky-300">9004 657 036</a></span></li>
+                        <li class="flex gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0"><i class="fa-regular fa-envelope text-sky-300"></i></span><span><span class="block text-gray-400 text-xs uppercase tracking-wider">Email</span><a href="mailto:sales@rssystems.in" class="hover:text-sky-300">sales@rssystems.in</a> / <a href="mailto:info@rssystems.in" class="hover:text-sky-300">info@rssystems.in</a></span></li>
+                        <li class="flex gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0"><i class="fa-solid fa-building text-sky-300"></i></span><span><span class="block text-gray-400 text-xs uppercase tracking-wider">Registered office</span>B-206, Walchand Plaza, Geeta Nagar, opp. Kapolwadi, Bhayander (West), Thane</span></li>
+                        <li class="flex gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0"><i class="fa-solid fa-location-dot text-sky-300"></i></span><span><span class="block text-gray-400 text-xs uppercase tracking-wider">Branch office</span>C-302, Blue Bell, Karande Mala, Tarabai Park, Kolhapur</span></li>
+                    </ul>
+                </div>
+
+                <form id="enquiry-form" class="reveal zoom lg:col-span-7 bg-greenaro-cardDark border border-white/10 rounded-3xl p-8 sm:p-10 shadow-2xl space-y-5">
+                    <h3 class="font-heading font-bold text-xl">Request a quote</h3>
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <label class="block text-sm"><span class="text-gray-300">Name</span>
+                            <input required name="name" type="text" class="mt-1.5 w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-sky-400" placeholder="Your name"></label>
+                        <label class="block text-sm"><span class="text-gray-300">Phone</span>
+                            <input required name="phone" type="tel" class="mt-1.5 w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-sky-400" placeholder="Mobile number"></label>
+                    </div>
+                    <label class="block text-sm"><span class="text-gray-300">Product</span>
+                        <select name="product" id="enquiry-product" class="mt-1.5 w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white focus:outline-none focus:border-sky-400">
+                            <option class="text-gray-900">Online UPS</option>
+                            <option class="text-gray-900">Line Interactive UPS</option>
+                            <option class="text-gray-900">Smart UPS</option>
+                            <option class="text-gray-900">Domestic Inverter</option>
+                            <option class="text-gray-900">Lift Inverter</option>
+                            <option class="text-gray-900">Solar On-Grid Inverter</option>
+                            <option class="text-gray-900">Solar Off-Grid Inverter</option>
+                            <option class="text-gray-900">Servo Voltage Stabilizer</option>
+                            <option class="text-gray-900">Lithium UPS</option>
+                            <option class="text-gray-900">Lithium MPPT Inverter</option>
+                            <option class="text-gray-900">Lithium range</option>
+                            <option class="text-gray-900">AMC / Service</option>
+                            <option class="text-gray-900">Other</option>
+                        </select></label>
+                    <label class="block text-sm"><span class="text-gray-300">Your requirement</span>
+                        <textarea name="msg" rows="4" class="mt-1.5 w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-sky-400" placeholder="Load, capacity (KVA), location, backup time..."></textarea></label>
+                    <button type="submit" class="bg-greenaro-lime hover:bg-greenaro-limeHover text-white font-heading font-bold text-base px-8 py-4 rounded-full inline-flex items-center gap-3 shadow-lg transition transform hover:-translate-y-0.5">
+                        Send enquiry <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                    <p class="text-xs text-gray-400">Opens your email app with the details addressed to sales@rssystems.in.</p>
+                </form>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-14 border-b border-white/10">
+                <div class="lg:col-span-2 space-y-5">
+                    <a href="index.html" class="rs-brand rs-brand--footer inline-flex bg-white rounded-xl px-4 py-2" aria-label="RS Systems &amp; Solutions home"><img src="assets/rslogo.jpeg" alt="RS Systems logo" width="42" height="42"><span class="rs-brand-text"><b>RS Systems</b><small>&amp; Solutions LLP</small></span></a>
+                    <p class="text-gray-400 text-sm max-w-sm leading-relaxed">RS Systems &amp; Solutions LLP &mdash; generic power equipment with branded quality. CE, ISO 9001:2015 &amp; NABL certified Indian company.</p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-heading font-bold text-base">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="about.html" class="hover:text-sky-300 transition">About Us</a></li>
+                        <li><a href="#products" class="hover:text-sky-300 transition">Products</a></li>
+                        <li><a href="industries.html" class="hover:text-sky-300 transition">Industries</a></li>
+                        <li><a href="clients.html" class="hover:text-sky-300 transition">Clients</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-heading font-bold text-base">Certifications</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li>ISO 9001 &middot; ISO 14001</li>
+                        <li>CE &middot; RoHS</li>
+                        <li>NABL</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+                <div>&copy; 2026 RS Systems &amp; Solutions LLP. All rights reserved.</div>
+                <div>Real &amp; Sure</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/919004657056" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center text-3xl shadow-xl hover:scale-110 transition"><i class="fa-brands fa-whatsapp"></i></a>
+
+    <script>
+        // Mobile menu
+        const mm = document.getElementById('mobile-menu');
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => mm.classList.toggle('hidden'));
+        mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.add('hidden')));
+
+        // Product filters
+        const filters = document.querySelectorAll('.pfilter');
+        const cards = document.querySelectorAll('#product-grid .pcard');
+        function applyFilter(f) {
+            filters.forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+            cards.forEach(c => c.classList.toggle('hide', f !== 'all' && c.dataset.cat !== f));
+        }
+        filters.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
+        document.querySelectorAll('[data-jump]').forEach(a => a.addEventListener('click', () => applyFilter(a.dataset.jump)));
+
+        // Pre-select product in enquiry form
+        const sel = document.getElementById('enquiry-product');
+        document.querySelectorAll('[data-enquire]').forEach(a => a.addEventListener('click', () => {
+            const v = a.dataset.enquire;
+            for (const o of sel.options) if (o.text === v) sel.value = v;
+        }));
+
+        // Enquiry -> mailto
+        document.getElementById('enquiry-form').addEventListener('submit', e => {
+            e.preventDefault();
+            const f = e.target;
+            const body = `Name: ${f.name.value}\nPhone: ${f.phone.value}\nProduct: ${f.product.value}\n\nRequirement:\n${f.msg.value}`;
+            window.location.href = 'mailto:sales@rssystems.in?subject=' + encodeURIComponent('Enquiry: ' + f.product.value) + '&body=' + encodeURIComponent(body);
+        });
+
+        // Counters
+        const counters = document.querySelectorAll('.counter');
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target, target = +el.dataset.target, step = Math.max(1, Math.ceil(target / 60));
+                let n = 0;
+                const t = setInterval(() => {
+                    n = Math.min(n + step, target);
+                    el.textContent = n;
+                    if (n >= target) clearInterval(t);
+                }, 25);
+                io.unobserve(el);
+            });
+        }, { threshold: 0.4 });
+        counters.forEach(c => io.observe(c));
+
+        // Scroll reveal
+        const rio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } }), { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => rio.observe(el));
+    </script>
+    <script src="assets/rs-enhance.js" defer></script>
+</body>
+</html>

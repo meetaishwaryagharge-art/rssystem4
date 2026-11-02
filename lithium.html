@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lithium Range | RS Systems &amp; Solutions LLP</title>
+    <meta name="description" content="New lithium range from RS Systems &amp; Solutions LLP: Lithium UPS and 1 KVA Lithium MPPT inverter with Lithium Ferro Phosphate cells for no maintenance and a small footprint.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        /* ===== BRAND SETTINGS: RS Systems & Solutions branding ===== */
+        const BRAND = {
+            primary:      '#0056b3',  /* corporate blue accent: buttons, highlights, icons */
+            primaryHover: '#004085',  /* button hover */
+            dark:         '#0f172a',  /* dark sections, header text, footer */
+            darkCard:     '#1e293b'   /* top bar, cards on dark */
+        };
+        const hexToRgb = h => { h = h.replace('#',''); return [0,2,4].map(i => parseInt(h.substr(i,2),16)).join(','); };
+        const rs = document.documentElement.style;
+        rs.setProperty('--brand-primary', BRAND.primary);
+        rs.setProperty('--brand-primary-rgb', hexToRgb(BRAND.primary));
+        rs.setProperty('--brand-dark', BRAND.dark);
+        rs.setProperty('--brand-dark-rgb', hexToRgb(BRAND.dark));
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        greenaro: {
+                            lime: BRAND.primary,
+                            limeHover: BRAND.primaryHover,
+                            dark: BRAND.dark,
+                            darker: BRAND.dark,
+                            cardDark: BRAND.darkCard,
+                            cardLight: '#f8fafc',
+                            grayText: '#718096',
+                            amber: '#f59e0b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+        body { font-family: 'Open Sans', sans-serif; color: #2d3748; background: #fff; overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+        @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .animate-spin-slow { animation: spinSlow 15s linear infinite; }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(10px); transition: all .25s ease; }
+        .marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* Scroll reveal */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+        .reveal.zoom { transform: scale(.92); }
+        .reveal.in { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .hero-bg, .marquee-track, .animate-spin-slow { animation: none; } }
+
+        /* Why-cards hover fill (reused from template) */
+        .svc { position: relative; overflow: hidden; isolation: isolate; }
+        .svc::before { content: ""; position: absolute; inset: 0; background: var(--brand-dark); transform: translateY(101%); transition: transform .55s cubic-bezier(.7,0,.2,1); z-index: -1; }
+        .svc:hover::before { transform: translateY(0); }
+        .svc h3, .svc p, .svc .svc-icon, .svc .svc-num { transition: color .4s ease, background .4s ease, transform .5s ease; }
+        .svc:hover h3 { color: #fff; }
+        .svc:hover p { color: #cbd5e1; }
+        .svc .svc-icon { background: rgba(var(--brand-primary-rgb), .12); color: var(--brand-primary); }
+        .svc:hover .svc-icon { background: var(--brand-primary); color: #fff; transform: rotateY(360deg); }
+        .svc .svc-num { color: rgba(var(--brand-dark-rgb), .06); }
+        .svc:hover .svc-num { color: rgba(var(--brand-primary-rgb), .3); transform: translateY(-6px); }
+
+        /* Hero */
+        @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+        .hero-bg { animation: heroZoom 18s ease-in-out infinite alternate; }
+
+        /* Product cards */
+        .pcard { transition: transform .35s ease, box-shadow .35s ease; }
+        .pcard:hover { transform: translateY(-6px); box-shadow: 0 25px 50px -12px rgba(15,23,42,.25); }
+        .pcard img { transition: transform .5s ease; mix-blend-mode: multiply; }
+        .pcard:hover img { transform: scale(1.06); }
+        .pfilter.active { background: var(--brand-primary); color: #fff; border-color: var(--brand-primary); }
+        .pcard.hide { display: none; }
+        .circuit { background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 22px 22px; }
+    </style>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/rslogo.jpeg">
+    <link rel="stylesheet" href="assets/rs-enhance.css">
+</head>
+<body class="bg-white text-gray-800 antialiased" data-rs-page="product">
+
+    <!-- TOP BAR -->
+    <div class="bg-[#1e293b] text-gray-300 text-xs sm:text-sm py-2.5 px-4 sm:px-8 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1">
+                <a href="mailto:sales@rssystems.in" class="flex items-center gap-2 hover:text-white transition"><i class="fa-regular fa-envelope text-sky-400"></i> sales@rssystems.in</a>
+                <a href="tel:+919004657056" class="flex items-center gap-2 hover:text-white transition"><i class="fa-solid fa-phone text-sky-400"></i> 9004 657 056 / 9004 657 036</a>
+            </div>
+            <div class="flex items-center gap-2 text-center"><i class="fa-solid fa-award text-sky-400"></i> CE &amp; ISO 9001:2015 &amp; NABL Certified Indian Company</div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="rs-brand" aria-label="RS Systems &amp; Solutions home"><img src="assets/rslogo.jpeg" alt="RS Systems logo" width="48" height="48"><span class="rs-brand-text"><b>RS Systems</b><small>Real &amp; Sure</small></span></a>
+
+            <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-gray-700">
+                <a href="index.html" class="hover:text-greenaro-lime transition">Home</a>
+                <a href="about.html" class="hover:text-greenaro-lime transition">About</a>
+                <div class="dropdown relative py-6">
+                    <a href="index.html#products" class="text-greenaro-dark font-semibold hover:text-greenaro-lime transition flex items-center gap-1">Products <i class="fa-solid fa-chevron-down text-[10px]"></i></a>
+                    <div class="dropdown-menu absolute top-full left-0 w-56 bg-white shadow-xl rounded-xl border border-gray-100 py-2">
+                        <a href="ups.html" data-jump="ups" class="block px-5 py-2.5 hover:bg-gray-50">UPS Systems</a>
+                        <a href="inverters.html" data-jump="inverter" class="block px-5 py-2.5 hover:bg-gray-50">Inverters</a>
+                        <a href="solar.html" data-jump="solar" class="block px-5 py-2.5 hover:bg-gray-50">Solar Systems</a>
+                        <a href="stabilizers.html" data-jump="stabilizer" class="block px-5 py-2.5 hover:bg-gray-50">Stabilizers</a>
+                        <a href="lithium.html" class="block px-5 py-2.5 hover:bg-gray-50">Lithium Range</a>
+                    </div>
+                </div>
+                <a href="industries.html" class="hover:text-greenaro-lime transition">Industries</a>
+                <a href="projects.html" class="hover:text-greenaro-lime transition">Projects</a>
+                <a href="clients.html" class="hover:text-greenaro-lime transition">Clients</a>
+                <a href="contact.html" class="hover:text-greenaro-lime transition">Contact</a>
+            </nav>
+
+            <div class="hidden sm:flex items-center">
+                <a href="contact.html" class="bg-greenaro-lime hover:bg-greenaro-limeHover text-white font-heading font-semibold text-sm px-6 py-3 rounded-full flex items-center gap-2 shadow-sm transition transform hover:-translate-y-0.5">
+                    Get a Quote <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" aria-label="Menu" class="lg:hidden text-2xl text-gray-800 focus:outline-none"><i class="fa-solid fa-bars"></i></button>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-1 shadow-lg">
+            <a href="index.html" class="block text-gray-700 py-2">Home</a>
+            <a href="about.html" class="block text-gray-700 py-2">About</a>
+            <a href="index.html#products" class="block text-gray-700 py-2">Products</a>
+            <a href="lithium.html" class="block text-gray-700 py-2">Lithium Range</a>
+            <a href="industries.html" class="block text-gray-700 py-2">Industries</a>
+            <a href="projects.html" class="block text-gray-700 py-2">Projects</a>
+            <a href="clients.html" class="block text-gray-700 py-2">Clients</a>
+            <a href="contact.html" class="block text-gray-700 py-2">Contact</a>
+            <div class="pt-3">
+                <a href="contact.html" class="w-full bg-greenaro-lime text-white font-semibold py-3 rounded-full flex items-center justify-center gap-2">Get a Quote <i class="fa-solid fa-arrow-right text-xs"></i></a>
+            </div>
+        </div>
+    </header>
+
+    
+
+
+
+
+
+
+
+
+<!-- PAGE HEADER -->
+    <section class="rs-hero relative bg-greenaro-dark text-white overflow-hidden" data-rs-hero>
+        <div class="rs-hero-bg"><img class="rs-watermark" src="assets/rslogo-mark.png" alt="" aria-hidden="true"></div>
+        <div class="rs-hero-carousel"><div class="hs" data-name="Lithium UPS" data-cat="Lithium · New" data-tagline="Maintenance-free Lithium Ferro Phosphate" data-enq="Lithium UPS"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/lithium-ups.jpg')" role="img" aria-label="Lithium UPS"></div></div></div><div class="hs" data-name="Lithium MPPT Inverter 1 KVA" data-cat="Lithium · New" data-tagline="Wall-mount lithium solar backup" data-enq="Lithium MPPT Inverter"><div class="hs-fg"><div class="hs-img" style="background-image:url('assets/lithium-mppt.jpg')" role="img" aria-label="Lithium MPPT Inverter 1 KVA"></div></div></div><span class="rs-hero-tag" data-rs-tag><i class="fa-solid fa-box-open"></i>Product</span><button type="button" class="rs-hero-arrow prev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button><button type="button" class="rs-hero-arrow next" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button><div class="rs-hero-dots"><button type="button" aria-label="Show slide 1"></button><button type="button" aria-label="Show slide 2"></button></div><div class="rs-hero-progress"><i></i></div></div>
+        <div class="rs-hero-inner relative max-w-7xl mx-auto px-4 sm:px-8 w-full">
+            <div class="rs-hero-copy">
+                <nav aria-label="Breadcrumb" class="text-sm text-gray-300 mb-6"><a href="index.html" class="hover:text-white">Home</a> <span class="mx-2">/</span> <a href="index.html#products" class="hover:text-white">Products</a> <span class="mx-2">/</span> <span class="text-white">Lithium range</span></nav>
+                <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight">Lithium inside. Maintenance out.</h1>
+                <p class="mt-5 text-lg sm:text-xl text-gray-200 max-w-2xl">Our new lithium range uses Lithium Ferro Phosphate batteries for no maintenance and a small footprint, ideal where space is tight and uptime is non-negotiable.</p>
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <a href="contact.html" data-enquire="Lithium range" class="bg-greenaro-lime hover:bg-greenaro-limeHover text-white font-heading font-bold px-8 py-4 rounded-full inline-flex items-center gap-3 shadow-md transition">Request lithium quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                    <a href="#products" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-heading font-bold px-8 py-4 rounded-full transition">View the range</a>
+                </div><div class="rs-chips"><span class="rs-chip"><i class="fa-solid fa-award"></i> CE &middot; ISO 9001:2015 &middot; NABL</span><span class="rs-chip"><i class="fa-solid fa-screwdriver-wrench"></i> AMC on every product</span><span class="rs-chip"><i class="fa-solid fa-battery-full"></i> Lithium Ferro Phosphate cells</span></div>
+            </div>
+        </div>
+    </section>
+    <!-- ON-PAGE NAV -->
+    <nav class="rs-subnav" aria-label="On this page"><div class="rs-subnav-inner"><a class="rs-pill" href="#lith-ups">Lithium UPS</a><a class="rs-pill" href="#lith-mppt">MPPT inverter</a><a class="rs-pill" href="#rs-why">Why lithium</a><a class="rs-pill" href="#rs-faq">FAQ</a><a class="rs-subnav-cta" href="#contact" data-enquire="Lithium range">Get a quote <i class="fa-solid fa-arrow-right text-xs"></i></a></div></nav>
+
+    <!-- TRUST STRIP -->
+    <section class="rs-trust"><div class="rs-trust-grid">
+        <div class="rs-trust-item"><div class="ic"><i class="fa-solid fa-award"></i></div><div><b>CE &middot; ISO &middot; NABL</b><span>Certified Indian company</span></div></div>
+        <div class="rs-trust-item"><div class="ic"><i class="fa-solid fa-screwdriver-wrench"></i></div><div><b>AMC support</b><span>On all our products</span></div></div>
+        <div class="rs-trust-item"><div class="ic"><i class="fa-solid fa-map-location-dot"></i></div><div><b>Multi-state service</b><span>Maharashtra to Jharkhand</span></div></div>
+        <div class="rs-trust-item"><div class="ic"><i class="fa-solid fa-user-tie"></i></div><div><b>32+ years</b><span>Industry experience</span></div></div>
+    </div></section>
+
+
+    <!-- PRODUCTS -->
+    <section id="products" class="py-20 lg:py-28 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="reveal max-w-3xl mb-12"><h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-gray-900 tracking-tight">Our new product range</h2><p class="mt-4 text-gray-600 leading-relaxed">Two lithium products with no-maintenance Lithium Ferro Phosphate cells, backed by our Annual Maintenance Contracts.</p></div>
+            <div class="space-y-8">
+<div id="lith-ups" class="reveal grid lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl shadow-md border border-gray-100 p-6 sm:p-10"><div class="rs-imgpanel rounded-2xl p-6 flex items-center justify-center "><img src="assets/lithium-ups.jpg" alt="RS Lithium UPS" class="h-72 w-full object-contain mix-blend-multiply"></div><div><span class="text-xs font-semibold bg-greenaro-lime/10 text-greenaro-lime px-3 py-1 rounded-full">New</span><h3 class="font-heading font-extrabold text-2xl sm:text-3xl text-gray-900 mt-3">Lithium UPS</h3><p class="mt-3 text-gray-600 leading-relaxed">Lithium UPS with built-in output and battery breakers. Lithium Ferro Phosphate cells inside give you no maintenance and a small footprint.</p><p class="mt-5 font-heading font-bold text-gray-900">Typical uses</p><ul class="mt-3 space-y-2 text-gray-700"><li class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Offices, banks and server rooms with limited space</li><li class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Computers, printers and network equipment</li><li class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Homes and shops needing quiet, low-maintenance backup</li><li class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Sites where uptime is non-negotiable</li></ul><a href="#contact" data-enquire="Lithium UPS" class="mt-6 bg-greenaro-lime hover:bg-greenaro-limeHover text-white font-heading font-bold text-sm px-7 py-3.5 rounded-full inline-flex items-center gap-2 transition">Enquire about Lithium UPS <i class="fa-solid fa-arrow-right text-xs"></i></a></div></div>
+<div id="lith-mppt" class="reveal grid lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl shadow-md border border-gray-100 p-6 sm:p-10"><div class="rs-imgpanel rounded-2xl p-6 flex items-center justify-center lg:order-2"><img src="assets/lithium-mppt.jpg" alt="RS Lithium MPPT Inverter, 1 KVA" class="h-72 w-full object-contain mix-blend-multiply"></div><div><span class="text-xs font-semibold bg-greenaro-lime/10 text-greenaro-lime px-3 py-1 rounded-full">New</span><h3 class="font-heading font-extrabold text-2xl sm:text-3xl text-gray-900 mt-3">Lithium MPPT Inverter, 1 KVA</h3><p class="mt-3 text-gray-600 leading-relaxed">1 KVA wall-mount Lithium MPPT inverter with lithium inside. Saves floor space and needs no battery maintenance.</p><p class="mt-5 font-heading font-bold text-gray-900">Typical uses</p><ul class="mt-3 space-y-2 text-gray-700"><li class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Homes and small offices</li><li class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Solar-charged backup with MPPT</li><li class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Wall-mounted installations where floor space is tight</li><li class="flex gap-3"><i class="fa-solid fa-check text-greenaro-lime mt-1"></i>Sites that want maintenance-free batteries</li></ul><a href="#contact" data-enquire="Lithium MPPT Inverter" class="mt-6 bg-greenaro-lime hover:bg-greenaro-limeHover text-white font-heading font-bold text-sm px-7 py-3.5 rounded-full inline-flex items-center gap-2 transition">Enquire about Lithium MPPT Inverter <i class="fa-solid fa-arrow-right text-xs"></i></a></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY -->
+    <section id="rs-why" class="py-20 lg:py-28 bg-greenaro-dark text-white circuit">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <h2 class="reveal font-heading font-extrabold text-3xl sm:text-4xl tracking-tight max-w-2xl">Why choose lithium</h2>
+            <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5"><div class="reveal bg-greenaro-cardDark rounded-2xl p-6"><i class="fa-solid fa-screwdriver-wrench text-sky-300 text-xl"></i><h3 class="font-heading font-bold mt-3">No maintenance</h3><p class="text-sm text-gray-300 mt-2 leading-relaxed">Lithium Ferro Phosphate cells need no battery maintenance.</p></div><div class="reveal bg-greenaro-cardDark rounded-2xl p-6"><i class="fa-solid fa-compress text-sky-300 text-xl"></i><h3 class="font-heading font-bold mt-3">Small footprint</h3><p class="text-sm text-gray-300 mt-2 leading-relaxed">Compact units free up floor space where room is tight.</p></div><div class="reveal bg-greenaro-cardDark rounded-2xl p-6"><i class="fa-solid fa-shield-halved text-sky-300 text-xl"></i><h3 class="font-heading font-bold mt-3">Built-in breakers</h3><p class="text-sm text-gray-300 mt-2 leading-relaxed">The Lithium UPS includes output and battery breakers.</p></div><div class="reveal bg-greenaro-cardDark rounded-2xl p-6"><i class="fa-solid fa-box text-sky-300 text-xl"></i><h3 class="font-heading font-bold mt-3">Wall-mount option</h3><p class="text-sm text-gray-300 mt-2 leading-relaxed">The 1 KVA Lithium MPPT inverter mounts on the wall.</p></div></div>
+        </div>
+    </section>
+
+    <!-- RELATED -->
+    <section id="rs-related" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 grid md:grid-cols-3 gap-6">
+            <a href="ups.html" class="reveal bg-gray-50 rounded-3xl p-8 hover:shadow-md transition"><i class="fa-solid fa-plug-circle-bolt text-2xl text-greenaro-lime"></i><h3 class="font-heading font-bold text-lg text-gray-900 mt-4">UPS systems</h3><p class="mt-2 text-sm text-gray-600">Online, line interactive and smart UPS.</p></a>
+            <a href="inverters.html" class="reveal bg-gray-50 rounded-3xl p-8 hover:shadow-md transition"><i class="fa-solid fa-car-battery text-2xl text-greenaro-lime"></i><h3 class="font-heading font-bold text-lg text-gray-900 mt-4">Inverters</h3><p class="mt-2 text-sm text-gray-600">Domestic and lift inverters.</p></a>
+            <a href="solar.html" class="reveal bg-gray-50 rounded-3xl p-8 hover:shadow-md transition"><i class="fa-solid fa-sun text-2xl text-greenaro-lime"></i><h3 class="font-heading font-bold text-lg text-gray-900 mt-4">Solar systems</h3><p class="mt-2 text-sm text-gray-600">On-grid and off-grid solar inverters.</p></a>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="py-20 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="reveal max-w-2xl mb-12"><span class="inline-block text-xs font-bold uppercase tracking-widest text-greenaro-lime bg-greenaro-lime/10 px-4 py-1.5 rounded-full">How it works</span><h2 class="mt-4 font-heading font-extrabold text-3xl sm:text-4xl text-gray-900 tracking-tight">From your first call to dependable power</h2></div>
+            <div class="rs-steps">
+                <div class="reveal rs-step"><span class="n">01</span><div class="ic"><i class="fa-solid fa-headset"></i></div><h3 class="font-heading">Tell us your load</h3><p>Share your load, capacity, location and backup time by phone, WhatsApp or the enquiry form.</p></div>
+                <div class="reveal rs-step" style="transition-delay:100ms"><span class="n">02</span><div class="ic"><i class="fa-solid fa-ruler-combined"></i></div><h3 class="font-heading">We size and quote</h3><p>Our team recommends the right model and capacity, customized to your requirement.</p></div>
+                <div class="reveal rs-step" style="transition-delay:200ms"><span class="n">03</span><div class="ic"><i class="fa-solid fa-truck-fast"></i></div><h3 class="font-heading">Delivery and installation</h3><p>Timely delivery with on-site installation and commissioning at your location.</p></div>
+                <div class="reveal rs-step" style="transition-delay:300ms"><span class="n">04</span><div class="ic"><i class="fa-solid fa-headset"></i></div><h3 class="font-heading">AMC and service</h3><p>Annual Maintenance Contracts and a service network to keep your power running.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="rs-faq" class="py-20 lg:py-28 bg-gray-50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-8">
+            <h2 class="reveal font-heading font-extrabold text-3xl text-gray-900 tracking-tight mb-8">Lithium questions</h2>
+            <div class="reveal space-y-4"><details class="group bg-white rounded-2xl p-5 shadow-sm border border-gray-100"><summary class="cursor-pointer font-heading font-bold text-gray-900 flex justify-between gap-4">What are Lithium Ferro Phosphate batteries?<i class="fa-solid fa-chevron-down text-xs mt-2 group-open:rotate-180 transition"></i></summary><p class="mt-3 text-gray-600 leading-relaxed">Lithium Ferro Phosphate (LiFePO4) is a lithium battery chemistry. In our range it gives you a battery that needs no maintenance and takes up little space.</p></details><details class="group bg-white rounded-2xl p-5 shadow-sm border border-gray-100"><summary class="cursor-pointer font-heading font-bold text-gray-900 flex justify-between gap-4">Who should choose the lithium range?<i class="fa-solid fa-chevron-down text-xs mt-2 group-open:rotate-180 transition"></i></summary><p class="mt-3 text-gray-600 leading-relaxed">It suits sites where space is tight and uptime is non-negotiable, and anyone who wants to avoid regular battery maintenance. For large UPS installations, see our <a href="ups.html" class="text-greenaro-lime font-semibold hover:underline">UPS systems</a>.</p></details><details class="group bg-white rounded-2xl p-5 shadow-sm border border-gray-100"><summary class="cursor-pointer font-heading font-bold text-gray-900 flex justify-between gap-4">Do you provide service and AMC?<i class="fa-solid fa-chevron-down text-xs mt-2 group-open:rotate-180 transition"></i></summary><p class="mt-3 text-gray-600 leading-relaxed">Yes. We provide Annual Maintenance Contracts for all our products and have a service network across Maharashtra, Goa, Gujarat, Rajasthan, Andhra Pradesh, Telangana, Kerala, Karnataka, Tamil Nadu, Odisha, Delhi / UP and Jharkhand.</p></details></div>
+        </div>
+    </section>
+
+    <!-- EXPLORE MORE -->
+    <section class="py-20 bg-white border-t border-gray-100"><div class="max-w-7xl mx-auto px-4 sm:px-8"><div class="reveal max-w-2xl mb-10"><h2 class="font-heading font-extrabold text-3xl text-gray-900 tracking-tight">Complete your power setup</h2><p class="mt-3 text-gray-600">Pair this range with other RS products for stable voltage, backup and clean energy.</p></div><div class="rs-explore-grid"><a href="ups.html" class="reveal rs-explore-card"><div class="pic"><img src="assets/ups-online.jpg" alt="UPS systems" loading="lazy"></div><div class="txt"><h3 class="font-heading">UPS systems</h3><p>Online, line interactive &amp; smart</p><span class="go">View range <i class="fa-solid fa-arrow-right text-[10px]"></i></span></div></a><a href="inverters.html" class="reveal rs-explore-card"><div class="pic"><img src="assets/inverter-domestic.jpg" alt="Inverters" loading="lazy"></div><div class="txt"><h3 class="font-heading">Inverters</h3><p>Domestic &amp; lift inverters</p><span class="go">View range <i class="fa-solid fa-arrow-right text-[10px]"></i></span></div></a><a href="solar.html" class="reveal rs-explore-card"><div class="pic"><img src="assets/solar-ongrid.jpg" alt="Solar systems" loading="lazy"></div><div class="txt"><h3 class="font-heading">Solar systems</h3><p>On-grid &amp; off-grid with MPPT</p><span class="go">View range <i class="fa-solid fa-arrow-right text-[10px]"></i></span></div></a><a href="stabilizers.html" class="reveal rs-explore-card"><div class="pic"><img src="assets/stabilizer.jpg" alt="Stabilizers" loading="lazy"></div><div class="txt"><h3 class="font-heading">Stabilizers</h3><p>Static &amp; servo, 5 to 1000 KVA</p><span class="go">View range <i class="fa-solid fa-arrow-right text-[10px]"></i></span></div></a></div></div></section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-greenaro-lime text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <h2 class="font-heading font-extrabold text-2xl sm:text-3xl max-w-2xl">Ready to go maintenance-free? Tell us your load and space.</h2>
+            <a href="contact.html" data-enquire="Lithium range" class="bg-white text-greenaro-lime font-heading font-bold px-8 py-4 rounded-full inline-flex items-center gap-3 shadow-md hover:-translate-y-0.5 transition">Request lithium quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+        </div>
+    </section>
+
+
+<footer id="contact" class="bg-greenaro-dark text-white pt-20 pb-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20">
+                <div class="reveal lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-sky-300 bg-white/10 px-4 py-1.5 rounded-full inline-block">Contact us</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Tell us your power problem. We'll size the solution.</h2>
+                    <p class="text-gray-300 leading-relaxed">Contact us today to discuss your specific requirements, receive expert guidance and find the perfect power quality solution for your business.</p>
+                    <ul class="space-y-5 text-sm">
+                        <li class="flex gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0"><i class="fa-solid fa-phone text-sky-300"></i></span><span><span class="block text-gray-400 text-xs uppercase tracking-wider">Call us</span><a href="tel:+919004657056" class="hover:text-sky-300">9004 657 056</a> / <a href="tel:+919004657036" class="hover:text-sky-300">9004 657 036</a></span></li>
+                        <li class="flex gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0"><i class="fa-regular fa-envelope text-sky-300"></i></span><span><span class="block text-gray-400 text-xs uppercase tracking-wider">Email</span><a href="mailto:sales@rssystems.in" class="hover:text-sky-300">sales@rssystems.in</a> / <a href="mailto:info@rssystems.in" class="hover:text-sky-300">info@rssystems.in</a></span></li>
+                        <li class="flex gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0"><i class="fa-solid fa-building text-sky-300"></i></span><span><span class="block text-gray-400 text-xs uppercase tracking-wider">Registered office</span>B-206, Walchand Plaza, Geeta Nagar, opp. Kapolwadi, Bhayander (West), Thane</span></li>
+                        <li class="flex gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0"><i class="fa-solid fa-location-dot text-sky-300"></i></span><span><span class="block text-gray-400 text-xs uppercase tracking-wider">Branch office</span>C-302, Blue Bell, Karande Mala, Tarabai Park, Kolhapur</span></li>
+                    </ul>
+                </div>
+
+                <form id="enquiry-form" class="reveal zoom lg:col-span-7 bg-greenaro-cardDark border border-white/10 rounded-3xl p-8 sm:p-10 shadow-2xl space-y-5">
+                    <h3 class="font-heading font-bold text-xl">Request a quote</h3>
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <label class="block text-sm"><span class="text-gray-300">Name</span>
+                            <input required name="name" type="text" class="mt-1.5 w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-sky-400" placeholder="Your name"></label>
+                        <label class="block text-sm"><span class="text-gray-300">Phone</span>
+                            <input required name="phone" type="tel" class="mt-1.5 w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-sky-400" placeholder="Mobile number"></label>
+                    </div>
+                    <label class="block text-sm"><span class="text-gray-300">Product</span>
+                        <select name="product" id="enquiry-product" class="mt-1.5 w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white focus:outline-none focus:border-sky-400">
+                            <option class="text-gray-900">Online UPS</option>
+                            <option class="text-gray-900">Line Interactive UPS</option>
+                            <option class="text-gray-900">Smart UPS</option>
+                            <option class="text-gray-900">Domestic Inverter</option>
+                            <option class="text-gray-900">Lift Inverter</option>
+                            <option class="text-gray-900">Solar On-Grid Inverter</option>
+                            <option class="text-gray-900">Solar Off-Grid Inverter</option>
+                            <option class="text-gray-900">Servo Voltage Stabilizer</option>
+                            <option class="text-gray-900">Lithium UPS</option>
+                            <option class="text-gray-900">Lithium MPPT Inverter</option>
+                            <option class="text-gray-900">Lithium range</option>
+                            <option class="text-gray-900">AMC / Service</option>
+                            <option class="text-gray-900">Other</option>
+                        </select></label>
+                    <label class="block text-sm"><span class="text-gray-300">Your requirement</span>
+                        <textarea name="msg" rows="4" class="mt-1.5 w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-sky-400" placeholder="Load, capacity (KVA), location, backup time..."></textarea></label>
+                    <button type="submit" class="bg-greenaro-lime hover:bg-greenaro-limeHover text-white font-heading font-bold text-base px-8 py-4 rounded-full inline-flex items-center gap-3 shadow-lg transition transform hover:-translate-y-0.5">
+                        Send enquiry <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                    <p class="text-xs text-gray-400">Opens your email app with the details addressed to sales@rssystems.in.</p>
+                </form>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-14 border-b border-white/10">
+                <div class="lg:col-span-2 space-y-5">
+                    <a href="index.html" class="rs-brand rs-brand--footer inline-flex bg-white rounded-xl px-4 py-2" aria-label="RS Systems &amp; Solutions home"><img src="assets/rslogo.jpeg" alt="RS Systems logo" width="42" height="42"><span class="rs-brand-text"><b>RS Systems</b><small>&amp; Solutions LLP</small></span></a>
+                    <p class="text-gray-400 text-sm max-w-sm leading-relaxed">RS Systems &amp; Solutions LLP &mdash; generic power equipment with branded quality. CE, ISO 9001:2015 &amp; NABL certified Indian company.</p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-heading font-bold text-base">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="about.html" class="hover:text-sky-300 transition">About Us</a></li>
+                        <li><a href="index.html#products" class="hover:text-sky-300 transition">Products</a></li>
+                        <li><a href="industries.html" class="hover:text-sky-300 transition">Industries</a></li>
+                        <li><a href="clients.html" class="hover:text-sky-300 transition">Clients</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-heading font-bold text-base">Certifications</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li>ISO 9001 &middot; ISO 14001</li>
+                        <li>CE &middot; RoHS</li>
+                        <li>NABL</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+                <div>&copy; 2026 RS Systems &amp; Solutions LLP. All rights reserved.</div>
+                <div>Real &amp; Sure</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/919004657056" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center text-3xl shadow-xl hover:scale-110 transition"><i class="fa-brands fa-whatsapp"></i></a>
+
+    <script>
+        // Mobile menu
+        const mm = document.getElementById('mobile-menu');
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => mm.classList.toggle('hidden'));
+        mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.add('hidden')));
+
+        // Product filters
+        const filters = document.querySelectorAll('.pfilter');
+        const cards = document.querySelectorAll('#product-grid .pcard');
+        function applyFilter(f) {
+            filters.forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+            cards.forEach(c => c.classList.toggle('hide', f !== 'all' && c.dataset.cat !== f));
+        }
+        filters.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
+        document.querySelectorAll('[data-jump]').forEach(a => a.addEventListener('click', () => applyFilter(a.dataset.jump)));
+
+        // Pre-select product in enquiry form
+        const sel = document.getElementById('enquiry-product');
+        document.querySelectorAll('[data-enquire]').forEach(a => a.addEventListener('click', () => {
+            const v = a.dataset.enquire;
+            for (const o of sel.options) if (o.text === v) sel.value = v;
+        }));
+
+        // Enquiry -> mailto
+        document.getElementById('enquiry-form').addEventListener('submit', e => {
+            e.preventDefault();
+            const f = e.target;
+            const body = `Name: ${f.name.value}\nPhone: ${f.phone.value}\nProduct: ${f.product.value}\n\nRequirement:\n${f.msg.value}`;
+            window.location.href = 'mailto:sales@rssystems.in?subject=' + encodeURIComponent('Enquiry: ' + f.product.value) + '&body=' + encodeURIComponent(body);
+        });
+
+        // Counters
+        const counters = document.querySelectorAll('.counter');
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target, target = +el.dataset.target, step = Math.max(1, Math.ceil(target / 60));
+                let n = 0;
+                const t = setInterval(() => {
+                    n = Math.min(n + step, target);
+                    el.textContent = n;
+                    if (n >= target) clearInterval(t);
+                }, 25);
+                io.unobserve(el);
+            });
+        }, { threshold: 0.4 });
+        counters.forEach(c => io.observe(c));
+
+        // Scroll reveal
+        const rio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } }), { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => rio.observe(el));
+    </script>
+    <script src="assets/rs-enhance.js" defer></script>
+</body>
+</html>
